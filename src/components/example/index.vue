@@ -9,6 +9,10 @@
       </div>
     </mt-header>
 
+    <div class="body">
+      <router-view/>
+    </div>
+
     <mt-tabbar v-model="selected">
       <mt-tab-item id="tab1">
         <img slot="icon" src="../../assets/list.svg" />
@@ -38,10 +42,41 @@ export default {
       selected: ""
     };
   },
+  watch:{
+    selected() {
+      switch (this.selected) {
+        case "tab1":
+          this.$router.push('grabOrder');
+          break;
+
+        case "tab2":
+          this.$router.push('parkAndFetch');
+          break;
+
+        case "tab3":
+          this.$router.push('history');
+          break;
+
+        case "tab4":
+          this.$router.push('personal');
+          break;
+
+        default:
+          this.$router.push('parkAndFetch');
+      }
+    }
+  },
   methods:{
     handleClose(){
       
-    }
+    },
   }
 };
 </script>
+
+<style scoped>
+  .body {
+    margin-top: 40px;
+  }
+
+</style>
