@@ -1,15 +1,22 @@
 <template>
-    <div>
-        This is grabOrder component
-    </div>
+  <div>
+    <mt-cell title="车牌号" to="/parkAndFetch" is-link icon="../../assets/car_order.svg" label="停车时间：">
+      <span>抢单</span>
+      <img slot="icon" src="../../assets/car_order.svg" width="24" height="24" />
+    </mt-cell>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index.vue"
-    }
+export default {
+  name: "grabOrder",
+  data(){
+      return{
+          
+      }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
