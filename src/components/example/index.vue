@@ -1,16 +1,16 @@
 <template>
   <div>
     <mt-header fixed title="P.L.M.H">
-      <div slot="left">
-        <mt-button v-link="'/'" icon="back">返回</mt-button>
-      </div>
+      <router-link to="/" slot="left">
+        <mt-button icon="back">返回</mt-button>
+      </router-link>
       <div slot="right">
         <mt-button @click="handleClose">关闭</mt-button>
       </div>
     </mt-header>
 
     <div class="body">
-      <router-view/>
+      <router-view />
     </div>
 
     <mt-tabbar v-model="selected">
@@ -42,41 +42,38 @@ export default {
       selected: ""
     };
   },
-  watch:{
+  watch: {
     selected() {
       switch (this.selected) {
         case "tab1":
-          this.$router.push('grabOrder');
+          this.$router.push("grabOrder");
           break;
 
         case "tab2":
-          this.$router.push('parkAndFetch');
+          this.$router.push("parkAndFetch");
           break;
 
         case "tab3":
-          this.$router.push('history');
+          this.$router.push("history");
           break;
 
         case "tab4":
-          this.$router.push('personal');
+          this.$router.push("personal");
           break;
 
         default:
-          this.$router.push('parkAndFetch');
+          this.$router.push("parkAndFetch");
       }
     }
   },
-  methods:{
-    handleClose(){
-      
-    },
+  methods: {
+    handleClose() {}
   }
 };
 </script>
 
 <style scoped>
-  .body {
-    margin-top: 40px;
-  }
-
+.body {
+  margin-top: 40px;
+}
 </style>

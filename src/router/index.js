@@ -9,6 +9,8 @@ import grabOrder from '../components/grabOrder/index'
 import parkAndFetch from '../components/parkAndFetch/index'
 import history from '../components/history/index'
 import personal from '../components/personal/index'
+import login from '../components/login/index'
+import register from '../components/register/index'
 
 const router = [
   {
@@ -37,6 +39,16 @@ const router = [
         component: personal
       },
     ]
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: login
   }
 ]
 
