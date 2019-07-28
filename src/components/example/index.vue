@@ -13,7 +13,7 @@
       </mt-tab-item>
       <mt-tab-item id="tab2">
         <img slot="icon" src="../../assets/car.svg" />
-        停取
+        进行中
       </mt-tab-item>
       <mt-tab-item id="tab3">
         <img slot="icon" src="../../assets/history.svg" />
