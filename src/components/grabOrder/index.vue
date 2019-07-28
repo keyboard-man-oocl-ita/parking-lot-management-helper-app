@@ -1,48 +1,59 @@
 <template>
   <div>
     <Header :title="'订单'"></Header>
-    <mt-cell :title="`${item.carLicense}`" v-for="(item, index) in orders" :key="index" to="/chooseParkingLot" value="抢单" is-link :label="`停车时间：${item.parkTime}`" >
+    <mt-cell
+      :title="`${item.carLicense}`"
+      v-for="(item, index) in orders"
+      :key="index"
+      to="/chooseParkingLot"
+      value="抢单"
+      is-link
+      :label="`停车时间：${item.parkTime}`"
+    >
       <img slot="icon" src="../../assets/car_order.svg" width="24" height="24" />
     </mt-cell>
   </div>
 </template>
 
 <script>
-import Header from '../header/index'
-import { setTimeout } from 'timers';
+import Header from "@/components/header/index";
+import { fetchOrders } from "@/api/grabOrder";
 
 export default {
   name: "grabOrder",
-  created(){
+  created() {
     // this.fetchOrder()
   },
-  data(){
-      return{
-          orders:[
-              {
-                carLicense: "粤A 88888",
-                parkTime: "19:00"
-              },
-              {
-                carLicense: "粤B 88888",
-                parkTime: "19:00"
-              },
-              {
-                carLicense: "粤C 88888",
-                parkTime: "19:00"
-              }
-          ],
+  data() {
+    return {
+      orders: [
+        {
+          carLicense: "粤A 88888",
+          parkTime: "19:00"
+        },
+        {
+          carLicense: "粤B 88888",
+          parkTime: "19:00"
+        },
+        {
+          carLicense: "粤C 88888",
+          parkTime: "19:00"
+        }
+      ],
+      parkingboy: {
+          id: '1'
       }
+    };
   },
-  components:{
-      Header
+  components: {
+    Header
   },
-  methods:{
-      fetchOrder(){
-          setTimeout(() => {
-              
-          }, 3000);
-      }
+  methods: {
+    fetchOrder() {
+      setTimeout(() => {
+        fetchOrders(this.parkingboy.id);
+      }, 3000);
+    }
   }
 };
 </script>
