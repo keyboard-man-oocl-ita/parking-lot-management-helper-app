@@ -9,7 +9,7 @@
       to="/details"
       value="详细信息"
       is-link
-      :label="`${item.createTime}-${item.endTime}`"
+      :label="`${item.createTime} - ${item.endTime}`"
     >
       <img slot="icon" src="../../assets/complete.svg" width="24" height="24" />
     </mt-cell>

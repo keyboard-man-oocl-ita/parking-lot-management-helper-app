@@ -94,26 +94,26 @@ export default {
       }
     },
     handleLogin() {
-        this.$router.push("/")
-      // this.$refs.loginForm.validate(valid => {
-        // if (valid) {
-        //   this.loading = true;
-        //   this.$store
-        //     .dispatch("user/login", this.loginForm)
-        //     .then(() => {
-        //       this.$router.push({
-        //         path: this.redirect || "/",
-        //         query: this.otherQuery
-        //       });
-        //       this.loading = false;
-        //     })
-        //     .catch(() => {
-        //       this.loading = false;
-        //     });
-        // } else {
-        //   return false;
-        // }
-      // });
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true;
+          this.$router.push("/")
+          // this.$store
+          //   .dispatch("user/login", this.loginForm)
+          //   .then(() => {
+          //     this.$router.push({
+          //       path: this.redirect || "/",
+          //       query: this.otherQuery
+          //     });
+          //     this.loading = false;
+          //   })
+          //   .catch(() => {
+          //     this.loading = false;
+          //   });
+        } else {
+          return false;
+        }
+      });
     }
   }
 };
