@@ -8,7 +8,7 @@
       to="/chooseParkingLot"
       value="抢单"
       is-link
-      :label="`停车时间：${item.parkTime}`"
+      :label="`订单创建时间：${item.createdTime}`"
     >
       <img slot="icon" src="../../assets/car_order.svg" width="24" height="24" />
     </mt-cell>
@@ -17,29 +17,20 @@
 
 <script>
 import Header from "@/components/header/index";
-import { fetchOrders } from "@/api/grabOrder";
+import { fetchOrdersByParkingBoyId } from "@/api/grabOrder";
+
 
 export default {
   name: "grabOrder",
-  created() {
-    // this.fetchOrder()
+  created: function() {
+    fetchOrdersByParkingBoyId(this.parkingboy.id).then(res => {
+      this.orders = res.data;
+      // eslint-disable-next-line no-console
+    }).catch(error => console.log(error))
   },
   data() {
     return {
-      orders: [
-        {
-          carLicense: "粤A 88888",
-          parkTime: "19:00"
-        },
-        {
-          carLicense: "粤B 88888",
-          parkTime: "19:00"
-        },
-        {
-          carLicense: "粤C 88888",
-          parkTime: "19:00"
-        }
-      ],
+      orders: [],
       parkingboy: {
           id: '1'
       }
@@ -49,11 +40,7 @@ export default {
     Header
   },
   methods: {
-    fetchOrder() {
-      setTimeout(() => {
-        fetchOrders(this.parkingboy.id);
-      }, 3000);
-    }
+
   }
 };
 </script>

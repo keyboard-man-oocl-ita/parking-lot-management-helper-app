@@ -1,7 +1,8 @@
 <template>
     <div>
         <Header :title="'选择停车场'"></Header>
-        <mt-cell v-for="(parkingLot,index) in parkingLots" :key="index" :title="parkingLot.name" :label="`剩余空位：${parkingLot.remaining}`">
+        <mt-cell v-for="parkingLot in parkingLots" :key="parkingLot.parkingLotId" :title="parkingLot.name"
+                 :label="`剩余空位：${parkingLot.residualPosition}`">
             <img slot="icon" src="../../assets/parkingLot-icon.svg" width="24" height="24" />
             <input type="radio" name="parkingLotRadio" :value="parkingLot" v-model="selectedParkingLot">
         </mt-cell>
@@ -10,30 +11,31 @@
 </template>
 
 <script>
-    import Header from '../header/index'
+    import Header from '@/components/header/index'
     import { Toast } from 'mint-ui';
+    import { getParkingLotsByParkingBoyId } from '@/api/chooseParkingLot'
+
     export default {
         name: "index.vue",
         components: {
             Header
         },
+        created: function () {
+
+            // eslint-disable-next-line no-console
+                getParkingLotsByParkingBoyId(this.parkingboyId).then((res)=>{
+                    this.parkingLots = res.data
+                }).catch((err) => {
+                    // eslint-disable-next-line no-console
+                    console.log(err.message)
+                });
+
+        },
         data() {
             return {
                 selectedParkingLot: ``,
-                remaining: 10,
-                parkingLots: [{
-                    name: '停车场一号',
-                    remaining: 10,
-                },{
-                    name: '停车场二号',
-                    remaining: 9,
-                },{
-                    name: '停车场三号',
-                    remaining: 5,
-                },{
-                    name: '停车场四号',
-                    remaining: 2,
-                },]
+                parkingboyId: 1,
+                parkingLots: [],
             }
         },
         computed: {

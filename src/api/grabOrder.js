@@ -1,16 +1,8 @@
 import request from '@/utils/request'
 
-export function fetchOrders(id) {
+export function fetchOrdersByParkingBoyId(parkingBoyId) {
   return request({
-    url: '/orders',
-    method: 'get',
-    params: id
-  })
-}
-
-export function fetchParkingLots() {
-  return request({
-    url: '/parkingLots',
+    url: `/orders?parkingBoyId=${parkingBoyId}`,
     method: 'get',
   })
 }
