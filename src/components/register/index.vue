@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Header from "../header/index";
+import Header from "@/components/header/index";
 
 export default {
   name: "register",
