@@ -1,15 +1,19 @@
 <template>
-    <div>
-        This is personal component
-    </div>
+  <div>
+    <Header :title="'个人信息'"></Header>This is personal component
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "index.vue"
-    }
+import Header from "../header/index";
+
+export default {
+  name: "personal",
+  components: {
+    Header
+  }
+};
 </script>
 
 <style scoped>
-
 </style>
