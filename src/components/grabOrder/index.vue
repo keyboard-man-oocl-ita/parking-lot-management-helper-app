@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mt-cell title="车牌号" to="/parkAndFetch" is-link icon="../../assets/car_order.svg" label="停车时间：">
+    <mt-cell title="车牌号" to="/chooseParkingLot" is-link icon="../../assets/car_order.svg" label="停车时间：">
       <span>抢单</span>
       <img slot="icon" src="../../assets/car_order.svg" width="24" height="24" />
     </mt-cell>
