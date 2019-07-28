@@ -1,13 +1,6 @@
 <template>
   <div>
-    <mt-header fixed title="P.L.M.H">
-      <router-link to="/" slot="left">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
-      <div slot="right">
-        <mt-button @click="handleClose">关闭</mt-button>
-      </div>
-    </mt-header>
+    <Header :title="'首页'"/>
 
     <div class="body">
       <router-view />
@@ -35,12 +28,16 @@
 </template>
 
 <script>
+import Header from '../header/index'
 export default {
   name: "ExampleComponent",
   data() {
     return {
       selected: ""
     };
+  },
+  components:{
+    Header
   },
   watch: {
     selected() {
@@ -67,7 +64,10 @@ export default {
     }
   },
   methods: {
-    handleClose() {}
+    handleClose() {},
+    backClick(){
+      this.$router.go(-1);
+    }
   }
 };
 </script>
