@@ -1,7 +1,7 @@
 <template>
   <div>
     <Header :title="'历史'"></Header>
-
+    
     <mt-cell
       :title="`${item.carLicense}`"
       v-for="(item, index) in orders"
@@ -13,12 +13,12 @@
     >
       <img slot="icon" src="../../assets/complete.svg" width="24" height="24" />
     </mt-cell>
-    
+
   </div>
 </template>
 
 <script>
-import Header from "../header/index";
+import Header from "@/components/header/index";
 
 export default {
   name: "history",
@@ -27,6 +27,7 @@ export default {
   },
   data(){
     return {
+      data:'www',
       orders: [
         {
           carLicense: "粤A 88888",

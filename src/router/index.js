@@ -32,6 +32,11 @@ const router = [
         name: 'history',
         component: () => import('@/components/history/index')
       },
+      {
+        path: '/details',
+        name: 'details',
+        component: () => import('@/components/historyDetails/index')
+      },
       //  第四个页面
       {
         path: '/personal',
