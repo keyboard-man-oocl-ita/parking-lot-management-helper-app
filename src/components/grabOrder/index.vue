@@ -46,7 +46,7 @@ export default {
       MessageBox.confirm("是否抢单", "提示").then(
         action => {
           if (action == "confirm") {
-            this.$router.push("/parkAndFetch");
+            this.$router.push("/chooseParkingLot");
             Toast({
               message: "抢单成功",
               duration: 1000
