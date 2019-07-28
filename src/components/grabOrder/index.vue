@@ -1,16 +1,18 @@
 <template>
   <div>
     <Header :title="'订单'"></Header>
-    <mt-cell
-      :title="`${item.carLicense}`"
-      v-for="(item, index) in orders"
-      :key="index"
-      value="抢单"
-      is-link
-      :label="`订单创建时间：${item.createdTime}`"
-    >
-      <img slot="icon" src="@/assets/car_order.svg" width="24" height="24" />
-    </mt-cell>
+    <div @click="grabOrder">
+      <mt-cell
+        :title="`${item.carLicense}`"
+        v-for="(item, index) in orders"
+        :key="index"
+        value="抢单"
+        is-link
+        :label="`订单创建时间：${item.createdTime}`"
+      >
+        <img slot="icon" src="@/assets/car_order.svg" width="24" height="24" />
+      </mt-cell>
+    </div>
   </div>
 </template>
 
