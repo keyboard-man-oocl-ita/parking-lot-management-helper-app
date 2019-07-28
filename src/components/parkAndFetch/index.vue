@@ -2,7 +2,7 @@
   <div>
     <Header :title="'正在进行的订单'"></Header>
 
-    <el-table :data="ordering" stripe style="width: 100%">
+    <el-table :data="ordering" stripe style="width: 100%" size="small">
       <el-table-column prop="orderNumber" label="订单号" width="80"></el-table-column>
       <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>
       <el-table-column prop="parkinglot" label="停车场"></el-table-column>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Header from "../header/index";
+import Header from "@/components/header/index";
 
 export default {
   name: "parkAndFetch",
