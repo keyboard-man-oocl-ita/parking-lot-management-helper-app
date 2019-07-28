@@ -1,16 +1,16 @@
 <template>
   <div class="login_all">
     <Header :title="'登录'"></Header>
-    <div class="logo"></div>
+    <div class="logo">
+      <el-image style="width: 100px; height: 100px" :src="url"></el-image>
+    </div>
     <div class="login_content">
-      <el-form ref="form" :model="loginForm">
-
+      <el-form ref="loginForm" :model="loginForm" :rules="loginRules">
         <el-form-item prop="username">
           <el-input placeholder="请输入手机号码" v-model="loginForm.username" clearable>
             <i class="el-input__icon el-icon-user" slot="prefix"></i>
           </el-input>
         </el-form-item>
-        
         <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
           <el-form-item prop="password">
             <el-input
@@ -18,12 +18,18 @@
               placeholder="请输入密码"
               v-model="loginForm.password"
               show-password
+              @keyup.native="checkCapslock"
               @blur="capsTooltip = false"
             ></el-input>
           </el-form-item>
         </el-tooltip>
-
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin" size="small">Login</el-button>
+        <el-button
+          :loading="loading"
+          type="primary"
+          style="width:100%;margin-top:16px;margin-bottom:30px;"
+          @click.native.prevent="handleLogin"
+          size="small"
+        >Login</el-button>
       </el-form>
     </div>
   </div>
@@ -31,7 +37,6 @@
 
 <script>
 import Header from "@/components/header/index";
-import { validUsername } from "@/utils/validate";
 
 export default {
   name: "login",
@@ -40,7 +45,7 @@ export default {
   },
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (!validUsername(value)) {
+      if (!value) {
         callback(new Error("Please enter the correct user name"));
       } else {
         callback();
@@ -54,6 +59,7 @@ export default {
       }
     };
     return {
+      url: require("@/assets/logo.png"),
       loginForm: {
         username: "",
         password: ""
@@ -104,7 +110,6 @@ export default {
               this.loading = false;
             });
         } else {
-          // console.log('error submit!!')
           return false;
         }
       });
@@ -115,9 +120,15 @@ export default {
 
 <style scoped>
 .login_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 40px;
 }
 .login_all {
+  margin-top: 100px;
+}
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
