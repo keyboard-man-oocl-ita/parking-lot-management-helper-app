@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Header :title="'首页'"/>
 
     <div class="body">
       <router-view />
@@ -8,19 +7,19 @@
 
     <mt-tabbar v-model="selected">
       <mt-tab-item id="tab1">
-        <img slot="icon" src="../../assets/list.svg" />
+        <img slot="icon" src="@/assets/list.svg" />
         抢单
       </mt-tab-item>
       <mt-tab-item id="tab2">
-        <img slot="icon" src="../../assets/car.svg" />
+        <img slot="icon" src="@/assets/car.svg" />
         进行中
       </mt-tab-item>
       <mt-tab-item id="tab3">
-        <img slot="icon" src="../../assets/history.svg" />
+        <img slot="icon" src="@/assets/history.svg" />
         历史
       </mt-tab-item>
       <mt-tab-item id="tab4">
-        <img slot="icon" src="../../assets/person.svg" />
+        <img slot="icon" src="@/assets/person.svg" />
         个人
       </mt-tab-item>
     </mt-tabbar>
@@ -28,16 +27,17 @@
 </template>
 
 <script>
-import Header from '../header/index'
 export default {
   name: "ExampleComponent",
+  created(){
+    this.$router.push("/grabOrder")
+  },
   data() {
     return {
       selected: ""
     };
   },
   components:{
-    Header
   },
   watch: {
     selected() {
