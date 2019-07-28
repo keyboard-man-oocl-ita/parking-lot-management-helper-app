@@ -1,6 +1,9 @@
 <template>
   <div>
     <Header :title="'个人信息'"></Header>
+    <div class="logo">
+      <el-image style="width: 100px; height: 100px" :src="url"></el-image>
+    </div>
     <mt-field label="手机号" type="tel" readonly value="13866668888" disableClear></mt-field>
     <mt-field label="邮箱" type="email" readonly value="clerk@oocl.com" disableClear></mt-field>
     <mt-field label="角色" readonly value="Parking Boy" disableClear></mt-field>
@@ -14,6 +17,11 @@ import Header from "@/components/header/index";
 
 export default {
   name: "personal",
+  data(){
+    return {
+      url: require("@/assets/profile.svg"),
+    }
+  },
   components: {
     Header
   }
@@ -21,4 +29,10 @@ export default {
 </script>
 
 <style scoped>
+.logo {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>
