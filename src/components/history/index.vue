@@ -11,7 +11,7 @@
       is-link
       :label="`${item.createTime} - ${item.endTime}`"
     >
-      <img slot="icon" src="../../assets/complete.svg" width="24" height="24" />
+      <img slot="icon" src="@/assets/complete.svg" width="24" height="24" />
     </mt-cell>
 
   </div>
