@@ -28,7 +28,13 @@ export default {
       .then(res => {
         this.orders = res.data;
       })
-      .catch(error => console.log(error));
+      .catch(error =>
+        Toast({
+          message: `${error.message}`,
+          position: "bottom",
+          duration: 1000
+        })
+      );
   },
   data() {
     return {
