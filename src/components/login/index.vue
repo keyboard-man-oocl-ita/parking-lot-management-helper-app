@@ -1,18 +1,19 @@
 <template>
   <div>
-
+    <Header :title="'登录'"></Header>This is login component
   </div>
 </template>
 
 <script>
+import Header from "../header/index";
 
 export default {
-  name: 'login',
+  name: "login",
   components: {
-
-  },
-  data() {
-    return {}
+    Header
   }
-}
+};
 </script>
+
+<style scoped>
+</style>

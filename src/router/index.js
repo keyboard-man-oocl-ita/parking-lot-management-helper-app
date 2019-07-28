@@ -3,68 +3,52 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-import Example from '../views/example/index'
-
-import grabOrder from '../components/grabOrder/index'
-import chooseParkingLot from '../components/chooseParkingLot/index'
-
-import parkAndFetch from '../components/parkAndFetch/index'
-
-import history from '../components/history/index'
-
-import personal from '../components/personal/index'
-
-import login from '../components/login/index'
-
-import register from '../components/register/index'
-
 const router = [
   {
     path: '/',
     name: 'Example',
-    component: Example,
+    component: () => import('@/components/example/index'),
     children: [
       //  第一个页面子组件
       {
         path: '/grabOrder',
         name: 'grabOrder',
-        component: grabOrder
+        component: () => import('@/components/grabOrder/index')
       },
       {
         path: '/chooseParkingLot',
         name: 'chooseParkingLot',
-        component: chooseParkingLot
-
+        component: () => import('@/components/chooseParkingLot/index')
       },
       //  第二个页面
       {
         path: '/parkAndFetch',
         name: 'parkAndFetch',
-        component: parkAndFetch
+        component: () => import('@/components/parkAndFetch/index')
       },
       //  第三个页面
       {
         path: '/history',
         name: 'history',
-        component: history
+        component: () => import('@/components/history/index')
       },
       //  第四个页面
       {
         path: '/personal',
         name: 'personal',
-        component: personal
+        component: () => import('@/components/personal/index')
       },
     ]
   },
   {
     path: '/register',
     name: 'register',
-    component: register
+    component: () => import('@/components/register/index')
   },
   {
     path: '/login',
     name: 'login',
-    component: login
+    component: () => import('@/components/login/index')
   }
 ]
 

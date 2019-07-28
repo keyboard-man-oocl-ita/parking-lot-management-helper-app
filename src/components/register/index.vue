@@ -1,18 +1,19 @@
 <template>
   <div>
-
+    <Header :title="'注册'"></Header>This is register component
   </div>
 </template>
 
 <script>
+import Header from "../header/index";
 
 export default {
-  name: 'register',
+  name: "register",
   components: {
-    
-  },
-  data() {
-    return {}
+    Header
   }
-}
+};
 </script>
+
+<style scoped>
+</style>
