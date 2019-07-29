@@ -64,7 +64,7 @@
             },
             grabOrder(item) {
                 this.selectedOrder = item;
-                this.selectedOrder.clerkId = this.parkingboy.id;
+                this.selectedOrder.clerkId = this.parkingBoyId;
                 this.selectedOrder.status = 1;
                 MessageBox.confirm("是否抢单", "提示").then(
                     action => {
