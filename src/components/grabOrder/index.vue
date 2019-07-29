@@ -27,16 +27,20 @@
             this.fetchData()
         },
         mounted() {
-            setInterval(() => {
+            this.idOfSetInterval = setInterval(() => {
                 this.fetchData()
             }, 5000);
+        },
+        beforeDestroy() {
+            clearInterval(this.idOfSetInterval)
         },
         data() {
             return {
                 orders: [],
                 parkingboy: {
                     id: "1"
-                }
+                },
+                idOfSetInterval: '',
             };
         },
         components: {
