@@ -23,18 +23,10 @@ import { MessageBox, Toast } from "mint-ui";
 
 export default {
   name: "grabOrder",
-  created: function() {
-    fetchOrdersByParkingBoyId(this.parkingboy.id)
-      .then(res => {
-        this.orders = res.data;
-      })
-      .catch(error =>
-        Toast({
-          message: `${error.message}`,
-          position: "bottom",
-          duration: 1000
-        })
-      );
+  mounted() {
+    setTimeout(() => {
+      this.fetchData()
+    }, 5000);
   },
   data() {
     return {
@@ -48,6 +40,19 @@ export default {
     Header
   },
   methods: {
+    fetchData() {
+      fetchOrdersByParkingBoyId(this.parkingboy.id)
+        .then(res => {
+          this.orders = res.data;
+        })
+        .catch(error =>
+          Toast({
+            message: `${error.message}`,
+            position: "bottom",
+            duration: 1000
+          })
+        );
+    },
     grabOrder() {
       MessageBox.confirm("是否抢单", "提示").then(
         action => {
