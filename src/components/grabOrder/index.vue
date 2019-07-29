@@ -6,7 +6,7 @@
                     :title="`${item.carLicense}`"
                     value="抢单"
                     is-link
-                    :label="`订单创建时间：${item.createdTime}`"
+                    :label="`订单创建时间：${formatDateTest(item.createdTime)}`"
             >
                 <img slot="icon" src="@/assets/car_order.svg" width="24" height="24"/>
             </mt-cell>
@@ -22,6 +22,8 @@
     import {fetchOrdersByParkingBoyId, updateOrdersClerkIdAndStatus} from "@/api/grabOrder";
     import {MessageBox, Toast} from "mint-ui";
     import {mapState} from 'vuex';
+    import { formatDate } from '@/utils/dateFormat'
+
 
     const HAVE_RECEIVE_ORDER = 1;
 
@@ -101,6 +103,9 @@
                         }
                     }
                 );
+            },
+            formatDateTest(timeStamp){
+                return formatDate(timeStamp)
             }
         }
     };

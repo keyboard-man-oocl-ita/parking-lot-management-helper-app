@@ -24,7 +24,7 @@
     import { updateOrdersStatus } from '@/api/parkAndFetch';
 
     const HAVE_PARKED_CAR = 2;
-    const HAVE_FETCHED_CAR = 3;
+    const HAVE_FETCHED_CAR = 4;
 
     export default {
         name: "parkAndFetch",
