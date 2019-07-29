@@ -5,7 +5,7 @@
     <div v-for="(item, index) in orders" :key="index">
       <mt-cell
         :title="`${item.carLicense}`"
-        :to="`/details/${item.id}`"
+        :to="`/details/${item.order_id}`"
         value="详细信息"
         is-link
         :label="`${item.createTime} - ${item.endTime}`"
@@ -25,7 +25,7 @@ export default {
     MyHeader
   },
   mounted() {
-    // this.$store.dispatch("");
+    // this.$store.dispatch("fetchOrderHistory", parkingBoyId);
   },
   data() {
     return {
@@ -40,9 +40,14 @@ export default {
           createTime: "19:00",
           endTime: "20:00"
         }
-      ]
+      ],
+      parkingboyId: 1
     };
   },
+  computed: mapState({
+    orders: state => state.orderHistory,
+    parkingBoyId: state => state.parkingBoyId
+  }),
   methods: {}
 };
 </script>
