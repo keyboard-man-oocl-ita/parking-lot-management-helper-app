@@ -4,7 +4,7 @@
         <mt-cell v-for="parkingLot in parkingLots" :key="parkingLot.parkingLotId" :title="parkingLot.name"
                  :label="`剩余空位：${parkingLot.residualPosition}`">
             <img slot="icon" src="@/assets/parkingLot-icon.svg" width="24" height="24" />
-            <input type="radio" name="parkingLotRadio" :value="parkingLot" v-model="selectedParkingLot">
+            <input :disabled="parkingLot.residualPosition === 0" type="radio" name="parkingLotRadio" :value="parkingLot" v-model="selectedParkingLot">
         </mt-cell>
         <mt-button type="primary" size="large" @click="confirmPark" :disabled="notSelected">确定停车</mt-button>
     </div>
