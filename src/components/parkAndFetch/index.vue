@@ -5,7 +5,10 @@
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
             <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>
             <el-table-column prop="parkingLotName" label="停车场"></el-table-column>
-            <el-table-column prop="status" :formatter="getStatus" label="状态"></el-table-column>
+            <el-table-column prop="status" label="状态"></el-table-column>
+            <el-table-column label="操作">
+                <el-button>停车</el-button>
+            </el-table-column>
         </el-table>
 
     </div>
