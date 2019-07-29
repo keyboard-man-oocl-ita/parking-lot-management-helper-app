@@ -11,6 +11,9 @@
                 <img slot="icon" src="@/assets/car_order.svg" width="24" height="24"/>
             </mt-cell>
         </div>
+        <div v-if="this.orders.length === 0" style="text-align: center; font-size: 15px;">
+            <span>暂无订单可抢</span>
+        </div>
     </div>
 </template>
 
@@ -71,9 +74,9 @@
                 MessageBox.confirm("是否抢单", "提示").then(
                     action => {
                         if (action == "confirm") {
-                            // this.$router.push("/chooseParkingLot");
                             updateOrdersClerkIdAndStatus(this.selectedOrder)
                                 .then(() => {
+                                    this.fetchData();
                                     Toast({
                                         message: "抢单成功",
                                         duration: 1000

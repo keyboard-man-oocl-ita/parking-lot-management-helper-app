@@ -21,17 +21,8 @@
         components: {
             MyHeader
         },
-        created: function () {
-
-            // eslint-disable-next-line no-console
-                getParkingLotsByParkingBoyId(this.parkingBoyId).then((res)=>{
-                    this.parkingLots = res.data
-                    this.$store.dispatch('getOrderList', this.parkingBoyId);
-                }).catch((err) => {
-                    // eslint-disable-next-line no-console
-                    console.log(err.message)
-                });
-
+        mounted: function () {
+            this.loadParkingLot();
         },
         data() {
             return {
@@ -54,6 +45,7 @@
                 delete this.operatedOrder.parkingLotName;
                 updateOrdersParkingLotAndStatus(this.operatedOrder).then(() => {
                     this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    this.loadParkingLot();
                     Toast({
                         message: `已停车至${this.selectedParkingLot.name}`,
                         iconClass: 'icon icon-success'
@@ -63,6 +55,17 @@
                     console.log(error)
                 })
                 this.$router.push('/parkAndFetch');
+            },
+            loadParkingLot() {
+                getParkingLotsByParkingBoyId(this.parkingBoyId).then((res)=>{
+                    this.parkingLots = res.data
+                    this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    // eslint-disable-next-line no-console
+                    console.log("load Parking Lot Success")
+                }).catch((err) => {
+                    // eslint-disable-next-line no-console
+                    console.log(err.message)
+                });
             }
         }
     }
