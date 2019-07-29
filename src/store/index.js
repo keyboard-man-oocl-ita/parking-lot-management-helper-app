@@ -26,8 +26,8 @@ const store = new Vuex.Store({
       let result = await getOrderList(id)
       commit('setOrderList', result.data)
     },
-    async fetchOrderHistory({ commit }, id) {
-      let result = await fetchHistoryOrdersByParkingBoyId(id)
+    async fetchOrderHistory({ commit }, payload) {
+      let result = await fetchHistoryOrdersByParkingBoyId(payload.id, payload.status)
       commit('setHistoryOrder', result.data)
     }
   }

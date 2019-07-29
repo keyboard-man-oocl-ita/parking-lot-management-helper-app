@@ -5,7 +5,7 @@
       <router-view />
     </div>
 
-    <mt-tabbar v-model="selected">
+    <mt-tabbar v-model="selected" fixed class="bottom_tab">
       <mt-tab-item id="tab1">
         <img slot="icon" src="@/assets/list.svg" />
         抢单
@@ -75,5 +75,6 @@ export default {
 <style scoped>
 .body {
   margin-top: 40px;
+  margin-bottom: 55px;
 }
 </style>
