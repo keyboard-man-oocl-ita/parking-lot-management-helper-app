@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MyHeader :title="'正在进行的订单'"></MyHeader>
+        <MyHeader :title="'正在进行中的订单'"></MyHeader>
         <el-table :data="orders" stripe style="width: 100%" size="small">
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
             <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>

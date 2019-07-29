@@ -1,6 +1,6 @@
 <template>
     <div>
-        <MyHeader :title="'订单'"></MyHeader>
+        <MyHeader :title="'抢单'"></MyHeader>
         <div v-for="(item, index) in orders" :key="index" @click="grabOrder(item)">
             <mt-cell
                     :title="`${item.carLicense}`"
