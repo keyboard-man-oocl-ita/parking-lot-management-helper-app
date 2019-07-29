@@ -9,6 +9,12 @@
     <mt-field label="角色" readonly value="Parking Boy" disableClear></mt-field>
     <mt-field label="冻结状态" readonly value="Active" disableClear></mt-field>
     <mt-field label="直属上司" readonly value="Parking Manager" disableClear></mt-field>
+    <el-button
+          type="primary"
+          style="width:100%;margin-top:20px;margin-bottom:30px;"
+          @click.native.prevent="handleUpdate"
+          size="small"
+        >更新信息</el-button>
   </div>
 </template>
 
@@ -17,6 +23,9 @@ import Header from "@/components/header/index";
 
 export default {
   name: "personal",
+  created(){
+
+  },
   data(){
     return {
       url: require("@/assets/profile.svg"),
@@ -24,13 +33,18 @@ export default {
   },
   components: {
     Header
+  },
+  methods:{
+    handleUpdate(){
+
+    }
   }
 };
 </script>
 
 <style scoped>
 .logo {
-  margin: 10px;
+  margin: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
