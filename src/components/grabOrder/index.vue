@@ -18,12 +18,17 @@
     import MyHeader from "@/components/MyHeader/index";
     import {fetchOrdersByParkingBoyId, updateOrdersClerkIdAndStatus} from "@/api/grabOrder";
     import {MessageBox, Toast} from "mint-ui";
+    import {mapState} from 'vuex';
 
     export default {
         name: "grabOrder",
         created(){
-
             this.fetchData()
+        },
+        computed: {
+            ...mapState({
+                parkingBoyId: state => state.parkingBoyId
+            })
         },
         mounted() {
             this.idOfSetInterval = setInterval(() => {
@@ -36,9 +41,6 @@
         data() {
             return {
                 orders: [],
-                parkingboy: {
-                    id: "1"
-                },
                 idOfSetInterval: '',
                 selectedOrder: {},
             };
@@ -48,7 +50,7 @@
         },
         methods: {
             fetchData() {
-                fetchOrdersByParkingBoyId(this.parkingboy.id)
+                fetchOrdersByParkingBoyId(this.parkingBoyId)
                     .then(res => {
                         this.orders = res.data;
                     })
