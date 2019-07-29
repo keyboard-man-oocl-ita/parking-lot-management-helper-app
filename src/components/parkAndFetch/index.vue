@@ -20,12 +20,12 @@
         components: {
             MyHeader
         },
-        computed: mapState({
-
-            orders: state => state.clerkOrderList,
-            parkingBoyId: state => state.parkingBoyId
-
-        }),
+        computed: {
+            ...mapState({
+                orders: state => state.clerkOrderList,
+                parkingBoyId: state => state.parkingBoyId
+            })
+        },
         data() {
             return {};
         },

@@ -22,6 +22,7 @@
     export default {
         name: "grabOrder",
         created(){
+
             this.fetchData()
         },
         mounted() {
