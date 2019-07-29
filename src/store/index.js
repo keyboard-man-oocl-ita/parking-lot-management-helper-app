@@ -17,7 +17,7 @@ const store = new Vuex.Store({
   },
   actions:{
     getOrderList({commit}){
-      axios.get("http://localhost:8080/orders")
+      axios.get("http://localhost:8080/orders/1")
           .then(res=>{
             commit('setOrderList',res.data)
           })

@@ -87,6 +87,9 @@
 
 
             }
+        },
+        mounted() {
+            this.$store.dispatch('getOrderList')
         }
     };
 </script>
