@@ -4,7 +4,7 @@
         <el-table :data="orders" stripe style="width: 100%" size="small">
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
             <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>
-            <el-table-column prop="parkinglot" label="停车场"></el-table-column>
+            <el-table-column prop="parkingLotName" label="停车场"></el-table-column>
             <el-table-column prop="status" :formatter="getStatus" label="状态"></el-table-column>
         </el-table>
 
