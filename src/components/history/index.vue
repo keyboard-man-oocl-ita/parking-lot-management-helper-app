@@ -18,6 +18,7 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
+import { mapState } from "vuex";
 
 export default {
   name: "history",
@@ -25,7 +26,7 @@ export default {
     MyHeader
   },
   mounted() {
-    // this.$store.dispatch("fetchOrderHistory", parkingBoyId);
+    this.$store.dispatch("fetchOrderHistory", this.parkingBoyId);
   },
   data() {
     return {
@@ -40,14 +41,15 @@ export default {
           createTime: "19:00",
           endTime: "20:00"
         }
-      ],
-      parkingboyId: 1
+      ]
     };
   },
-  computed: mapState({
-    orders: state => state.orderHistory,
-    parkingBoyId: state => state.parkingBoyId
-  }),
+  computed: {
+    ...mapState({
+      orders: state => state.clerkOrderList,
+      parkingBoyId: state => state.parkingBoyId
+    })
+  },
   methods: {}
 };
 </script>

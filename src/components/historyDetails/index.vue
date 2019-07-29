@@ -16,12 +16,14 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
+import { mapState } from "vuex";
 
 export default {
-  name: "history",
+  name: "historyDetails",
   components: {
     MyHeader
   },
+  mounted() {},
   data() {
     return {
       details: {
@@ -30,6 +32,11 @@ export default {
         parktime: "1小时20分"
       }
     };
+  },
+  computed: {
+    ...mapState({
+      orders: state => state.clerkOrderList
+    })
   }
 };
 </script>
