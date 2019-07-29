@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :title="'选择停车场'"></Header>
+        <MyHeader :title="'选择停车场'"></MyHeader>
         <mt-cell v-for="parkingLot in parkingLots" :key="parkingLot.parkingLotId" :title="parkingLot.name"
                  :label="`剩余空位：${parkingLot.residualPosition}`">
             <img slot="icon" src="@/assets/parkingLot-icon.svg" width="24" height="24" />
@@ -11,14 +11,14 @@
 </template>
 
 <script>
-    import Header from '@/components/header/index'
+    import MyHeader from '@/components/MyHeader/index'
     import { Toast } from 'mint-ui';
     import { getParkingLotsByParkingBoyId } from '@/api/chooseParkingLot'
 
     export default {
         name: "index.vue",
         components: {
-            Header
+            MyHeader
         },
         created: function () {
 

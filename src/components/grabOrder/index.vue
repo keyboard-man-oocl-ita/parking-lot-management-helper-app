@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :title="'订单'"></Header>
+        <MyHeader :title="'订单'"></MyHeader>
         <div @click="grabOrder">
             <mt-cell
                     :title="`${item.carLicense}`"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-    import Header from "@/components/header/index";
+    import MyHeader from "@/components/MyHeader/index";
     import {fetchOrdersByParkingBoyId} from "@/api/grabOrder";
     import {MessageBox, Toast} from "mint-ui";
 
@@ -44,11 +44,10 @@
             };
         },
         components: {
-            Header
+            MyHeader
         },
         methods: {
             fetchData() {
-
                 fetchOrdersByParkingBoyId(this.parkingboy.id)
                     .then(res => {
                         this.orders = res.data;
@@ -60,7 +59,6 @@
                             duration: 1000
                         })
                     );
-
             },
             grabOrder() {
                 MessageBox.confirm("是否抢单", "提示").then(

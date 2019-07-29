@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :title="'历史'"></Header>
+    <MyHeader :title="'历史'"></MyHeader>
     
     <mt-cell
       :title="`${item.carLicense}`"
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import Header from "@/components/header/index";
+import MyHeader from "@/components/MyHeader/index";
 
 export default {
   name: "history",
   components: {
-    Header
+    MyHeader
   },
   data(){
     return {

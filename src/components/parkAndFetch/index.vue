@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :title="'正在进行的订单'"></Header>
+        <MyHeader :title="'正在进行的订单'"></MyHeader>
 
         <el-table :data="orders" stripe style="width: 100%" size="small">
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-    import Header from '@/components/header/index';
+    import MyHeader from '@/components/MyHeader/index';
     import {mapState} from 'vuex'
 
     const FINISHED = 3;
@@ -23,7 +23,7 @@
     export default {
         name: "parkAndFetch",
         components: {
-            Header
+            MyHeader
         },
         computed:mapState({
 

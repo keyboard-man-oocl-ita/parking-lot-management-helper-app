@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :title="'订单详细信息'"></Header>
+    <MyHeader :title="'订单详细信息'"></MyHeader>
 
     <div class="details_content">
       <el-card class="box-card">
@@ -15,12 +15,12 @@
 </template>
 
 <script>
-import Header from "@/components/header/index";
+import MyHeader from "@/components/MyHeader/index";
 
 export default {
   name: "history",
   components: {
-    Header
+    MyHeader
   },
   data() {
     return {

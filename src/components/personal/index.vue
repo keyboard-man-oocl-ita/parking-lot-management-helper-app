@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header :title="'个人信息'"></Header>
+    <MyHeader :title="'个人信息'"></MyHeader>
     <div class="logo">
       <el-image style="width: 100px; height: 100px" :src="url"></el-image>
     </div>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import Header from "@/components/header/index";
+import MyHeader from "@/components/MyHeader/index";
 
 export default {
   name: "personal",
@@ -32,7 +32,7 @@ export default {
     }
   },
   components: {
-    Header
+    MyHeader
   },
   methods:{
     handleUpdate(){

@@ -1,6 +1,6 @@
 <template>
   <div class="login_all">
-    <Header :title="'登录'"></Header>
+    <MyHeader :title="'登录'"></MyHeader>
     <div class="logo">
       <el-image style="width: 100px; height: 100px" :src="url"></el-image>
     </div>
@@ -36,12 +36,12 @@
 </template>
 
 <script>
-import Header from "@/components/header/index";
+import MyHeader from "@/components/MyHeader/index";
 
 export default {
   name: "login",
   components: {
-    Header
+    MyHeader
   },
   data() {
     const validateUsername = (rule, value, callback) => {
