@@ -72,5 +72,5 @@ typings/
 *.sw?
 /package-lock.json
 
-# pack files
-.dist
+# packed files
+dist/
