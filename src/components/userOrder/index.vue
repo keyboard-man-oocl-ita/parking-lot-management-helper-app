@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MyHeader :title="'订单'"></MyHeader>
+    <MyHeader :title="'用户订单'"></MyHeader>
   </div>
 </template>
 
@@ -10,8 +10,13 @@ import MyHeader from "@/components/MyHeader/index";
 export default {
   name: "userOrder",
   data(){
-
-  }
+    return {
+      
+    }
+  },
+  components: {
+    MyHeader
+  },
 }
 </script>
 

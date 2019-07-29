@@ -11,8 +11,10 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
-import { Toast } from "mint-ui";
-import { setTimeout } from "timers";
+import { Toast, MessageBox } from "mint-ui";
+import { parkCarByUserIdAndCar, fetchCarByUserId } from "@/api/createOrder";
+
+const REQUEST_PICKCAR = 3;
 
 export default {
   name: "parkCar",
@@ -25,39 +27,103 @@ export default {
   },
   data() {
     return {
-      parkcar: true,
       parkUrl: require("@/assets/parkCar.svg"),
-      fetchUrl: require("@/assets/fetchCar.svg")
+      fetchUrl: require("@/assets/fetchCar.svg"),
+      userId: "1",
+      carLicense: "粤C 88888",
+      myOrder: ""
     };
   },
   components: {
     MyHeader
   },
+  computed: {
+    parkcar() {
+      return this.$store.state.parkCar;
+    }
+  },
   methods: {
     parkCar() {
-      this.parkcar = !this.parkcar;
-      // this.$store.dispatch("")
-      Toast({
-        message: "下单成功",
-        position: "bottom",
-        duration: 1500
-      });
-      setTimeout(() => {
-        Toast({
-          message: "再次点击即可取车",
-          position: "bottom",
-          duration: 2000
-        });
-      }, 1500);
+      var self = this;
+      MessageBox.confirm("是否下单", "提示").then(
+        action => {
+          if (action == "confirm") {
+            let data = {
+              userId: this.userId,
+              carLicense: this.carLicense
+            };
+            parkCarByUserIdAndCar(data)
+              .then(res => {
+                self.myOrder = res.data;
+                self.$store.dispatch("setParkCar");
+                Toast({
+                  message: "下单成功",
+                  position: "bottom",
+                  duration: 1500
+                });
+                setTimeout(() => {
+                  Toast({
+                    message: "再次点击即可取车",
+                    position: "bottom",
+                    duration: 2000
+                  });
+                }, 1500);
+              })
+              .catch(error =>
+                Toast({
+                  message: `${error.message}`,
+                  position: "bottom",
+                  duration: 1000
+                })
+              );
+          }
+        },
+        action => {
+          if (action == "cancel") {
+            Toast({
+              message: "已取消",
+              position: "bottom",
+              duration: 1000
+            });
+          }
+        }
+      );
     },
     fetchCar() {
-      this.parkcar = !this.parkcar;
-      // this.$store.dispatch("")
-      Toast({
-        message: "取车成功",
-        position: "bottom",
-        duration: 1000
-      });
+      var self = this;
+      MessageBox.confirm("是否取车", "提示").then(
+        action => {
+          if (action == "confirm") {
+            self.myOrder.status = REQUEST_PICKCAR;
+            console.log(self.myOrder);
+            fetchCarByUserId(self.myOrder)
+              .then(() => {
+                self.$store.dispatch("setParkCar");
+                Toast({
+                  message: "取车成功",
+                  position: "bottom",
+                  duration: 1500
+                });
+              })
+              .catch(error =>
+                Toast({
+                  message: `${error.message}`,
+                  position: "bottom",
+                  duration: 1000
+                })
+              );
+          }
+        },
+        action => {
+          if (action == "cancel") {
+            Toast({
+              message: "已取消",
+              position: "bottom",
+              duration: 1000
+            });
+          }
+        }
+      );
     }
   }
 };

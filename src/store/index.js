@@ -12,6 +12,7 @@ const store = new Vuex.Store({
     parkingBoyId: "6f16388d-98eb-41ef-ba14-b5358678a5ca",
     orderHistory: [],
     operatedOrder: {},
+    parkCar: true
   },
   mutations: {
     setOrderList(state, list) {
@@ -19,6 +20,9 @@ const store = new Vuex.Store({
     },
     setHistoryOrder(state, list){
       state.orderHistory = list
+    },
+    setParkCar( state ){
+      state.parkCar = !state.parkCar
     }
   },
   actions: {
@@ -29,6 +33,9 @@ const store = new Vuex.Store({
     async fetchOrderHistory({ commit }, payload) {
       let result = await fetchHistoryOrdersByParkingBoyId(payload.id, payload.status)
       commit('setHistoryOrder', result.data)
+    },
+    setParkCar({ commit }){
+      commit('setParkCar')
     }
   }
 })
