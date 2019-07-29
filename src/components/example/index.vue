@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="body">
       <router-view />
     </div>
@@ -29,16 +28,15 @@
 <script>
 export default {
   name: "ExampleComponent",
-  created(){
-    this.$router.push("/grabOrder")
+  created() {
+    this.$router.push("/grabOrder");
   },
   data() {
     return {
       selected: ""
     };
   },
-  components:{
-  },
+  components: {},
   watch: {
     selected() {
       switch (this.selected) {
@@ -63,12 +61,7 @@ export default {
       }
     }
   },
-  methods: {
-    handleClose() {},
-    backClick(){
-      this.$router.go(-1);
-    }
-  }
+  methods: {}
 };
 </script>
 

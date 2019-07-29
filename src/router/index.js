@@ -55,6 +55,26 @@ const router = [
     path: '/login',
     name: 'login',
     component: () => import('@/components/login/index')
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import('@/components/user/index'),
+    children: [{
+      path: '/parkCar',
+      name: 'parkCar',
+      component: () => import('@/components/parkCar/index')
+    },
+    {
+      path: '/userProfile',
+      name: 'userProfile',
+      component: () => import('@/components/userProfile/index')
+    },
+    {
+      path: '/userOrder',
+      name: 'userOrder',
+      component: () => import('@/components/userOrder/index')
+    }]
   }
 ]
 
