@@ -25,10 +25,12 @@ export default {
   components: {
     MyHeader
   },
-  mounted() {
+  created() {
     // this.$store.state.orderHistory.forEach(item => {
     //   if (item.order_Id == this.$route.params) {
     //     this.details = item;
+    //     let parkTime = item.end_time - item.created_time
+    //     this.details.park_time = `${parseInt(parkTime/1000/60/60%24)}时${parseInt(parkTime/1000/60%60)}分${parseInt(parkTime/1000%60)}秒`
     //   }
     // });
   },
