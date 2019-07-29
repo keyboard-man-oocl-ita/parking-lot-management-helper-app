@@ -6,3 +6,11 @@ export function fetchOrdersByParkingBoyId(parkingBoyId) {
     method: 'get',
   })
 }
+
+export function updateOrdersClerkIdAndStatus(data) {
+  return request({
+    url: 'orders',
+    method: `put`,
+    data
+  })
+}

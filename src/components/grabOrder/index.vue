@@ -1,11 +1,9 @@
 <template>
     <div>
         <MyHeader :title="'订单'"></MyHeader>
-        <div @click="grabOrder">
+        <div v-for="(item, index) in orders" :key="index" @click="grabOrder(item)">
             <mt-cell
                     :title="`${item.carLicense}`"
-                    v-for="(item, index) in orders"
-                    :key="index"
                     value="抢单"
                     is-link
                     :label="`订单创建时间：${item.createdTime}`"
@@ -18,7 +16,7 @@
 
 <script>
     import MyHeader from "@/components/MyHeader/index";
-    import {fetchOrdersByParkingBoyId} from "@/api/grabOrder";
+    import {fetchOrdersByParkingBoyId, updateOrdersClerkIdAndStatus} from "@/api/grabOrder";
     import {MessageBox, Toast} from "mint-ui";
 
     export default {
@@ -41,6 +39,7 @@
                     id: "1"
                 },
                 idOfSetInterval: '',
+                selectedOrder: {},
             };
         },
         components: {
@@ -60,15 +59,28 @@
                         })
                     );
             },
-            grabOrder() {
+            grabOrder(item) {
+                this.selectedOrder = item;
+                this.selectedOrder.clerkId = this.parkingboy.id;
+                this.selectedOrder.status = 1;
                 MessageBox.confirm("是否抢单", "提示").then(
                     action => {
                         if (action == "confirm") {
-                            this.$router.push("/chooseParkingLot");
-                            Toast({
-                                message: "抢单成功",
-                                duration: 1000
-                            });
+                            // this.$router.push("/chooseParkingLot");
+                            updateOrdersClerkIdAndStatus(this.selectedOrder)
+                                .then(() => {
+                                    Toast({
+                                        message: "抢单成功",
+                                        duration: 1000
+                                    });
+                                }).catch(error =>
+                                    Toast({
+                                        message: `${error.message}`,
+                                        position: "bottom",
+                                        duration: 1000
+                                    })
+                                );
+
                         }
                     },
                     action => {
