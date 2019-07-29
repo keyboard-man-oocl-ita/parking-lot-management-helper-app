@@ -13,7 +13,7 @@
 <script>
     import MyHeader from '@/components/MyHeader/index'
     import { Toast } from 'mint-ui';
-    import { getParkingLotsByParkingBoyId } from '@/api/chooseParkingLot'
+    import { getParkingLotsByParkingBoyId, updateOrdersParkingLotAndStatus } from '@/api/chooseParkingLot'
     import {mapState} from 'vuex'
 
     export default {
@@ -40,7 +40,8 @@
         },
         computed: {
             ...mapState({
-                parkingBoyId: state => state.parkingBoyId
+                parkingBoyId: state => state.parkingBoyId,
+                operatedOrder: state => state.operatedOrder,
             }),
             notSelected() {
                 return this.selectedParkingLot === `` ? true : false;
@@ -48,11 +49,17 @@
         },
         methods: {
             confirmPark() {
-                // 选择停车场
-                Toast({
-                    message: `已停车至${this.selectedParkingLot.name}`,
-                    iconClass: 'icon icon-success'
-                });
+                this.operatedOrder.parkingLotId = this.selectedParkingLot.parkingLotId;
+                delete this.operatedOrder.parkingLotName;
+                updateOrdersParkingLotAndStatus(this.operatedOrder).then(() => {
+                    Toast({
+                        message: `已停车至${this.selectedParkingLot.name}`,
+                        iconClass: 'icon icon-success'
+                    });
+                }).catch(error => {
+                    // eslint-disable-next-line no-console
+                    console.log(error)
+                })
                 this.$router.push('/parkAndFetch');
             }
         }

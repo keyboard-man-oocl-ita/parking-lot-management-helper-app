@@ -7,10 +7,10 @@ export function getParkingLotsByParkingBoyId(id) {
     })
 }
 
-export function updateOrdersParkingLotAndStatus(order) {
+export function updateOrdersParkingLotAndStatus(data) {
     return request({
-        url: `/orders/${order.id}`,
+        url: `/orders`,
         method: 'put',
-        body: order
+        data
     })
 }
