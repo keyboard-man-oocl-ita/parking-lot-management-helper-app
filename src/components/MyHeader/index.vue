@@ -17,9 +17,16 @@ export default {
     return {};
   },
   methods: {
-    handleClose() {},
+    handleClose() {
+      this.$router.push("/login");
+    },
     backClick() {
-      this.$router.go(-1);
+      if (this.$route.path == '/grabOrder') {
+        this.$router.push("/login");
+        return false;
+      } else {
+        this.$router.go(-1);
+      }
     }
   }
 };
