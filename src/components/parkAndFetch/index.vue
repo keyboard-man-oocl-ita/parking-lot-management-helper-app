@@ -15,43 +15,22 @@
     import MyHeader from '@/components/MyHeader/index';
     import {mapState} from 'vuex'
 
-    const FINISHED = 3;
-    const PARKED = 2;
-    const RECEIPTED = 1;
-    const SNATCHING = 0;
     export default {
         name: "parkAndFetch",
         components: {
             MyHeader
         },
-        computed:mapState({
+        computed: mapState({
 
-            orders : state => state.clerkOrderList
+            orders: state => state.clerkOrderList,
+            parkingBoyId: state => state.parkingBoyId
 
         }),
         data() {
-            return {
-
-            };
-        },
-        methods: {
-            getStatus(row, column, cellValue) {
-
-                if (cellValue === SNATCHING) {
-                    return '抢单中'
-                } else if (cellValue === RECEIPTED) {
-                    return '已接单'
-                } else if (cellValue === PARKED) {
-                    return '已停车'
-                } else if (cellValue === FINISHED) {
-                    return '已完成'
-                }
-
-
-            }
+            return {};
         },
         mounted() {
-            this.$store.dispatch('getOrderList')
+            this.$store.dispatch('getOrderList', this.parkingBoyId)
         }
     };
 </script>

@@ -7,7 +7,8 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    clerkOrderList: []
+    clerkOrderList: [],
+    parkingBoyId: 1,
   },
   mutations: {
     setOrderList(state, list) {
@@ -15,8 +16,8 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    async getOrderList({ commit }) {
-      let result = await getOrderList()
+    async getOrderList({ commit }, id) {
+      let result = await getOrderList(id)
       commit('setOrderList', result.data)
     }
   }
