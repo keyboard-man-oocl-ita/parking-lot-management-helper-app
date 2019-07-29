@@ -1,7 +1,6 @@
 <template>
     <div>
         <MyHeader :title="'正在进行的订单'"></MyHeader>
-
         <el-table :data="orders" stripe style="width: 100%" size="small">
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
             <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>
@@ -32,44 +31,7 @@
         }),
         data() {
             return {
-                // ordering: [
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤A 88888",
-                //         parkinglot: "yangming",
-                //         status: 1
-                //     },
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤B 88888",
-                //         parkinglot: "yangming",
-                //         status: 2
-                //     },
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤A 88888",
-                //         parkinglot: "yangming",
-                //         status: 1
-                //     },
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤B 88888",
-                //         parkinglot: "yangming",
-                //         status: 0
-                //     },
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤A 88888",
-                //         parkinglot: "yangming",
-                //         status: 1
-                //     },
-                //     {
-                //         orderId: "454545",
-                //         carLicense: "粤B 88888",
-                //         parkinglot: "yangming",
-                //         status: 2
-                //     }
-                // ]
+               
             };
         },
         methods: {
