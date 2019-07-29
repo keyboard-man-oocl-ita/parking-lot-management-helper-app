@@ -10,6 +10,7 @@ const store = new Vuex.Store({
   state: {
     clerkOrderList: [],
     parkingBoyId: "6f16388d-98eb-41ef-ba14-b5358678a5ca",
+
     orderHistory: [],
     operatedOrder: {},
   },

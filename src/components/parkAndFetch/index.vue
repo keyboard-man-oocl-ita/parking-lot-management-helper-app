@@ -20,6 +20,8 @@
 <script>
     import MyHeader from '@/components/MyHeader/index';
     import {mapState} from 'vuex'
+    import { Toast } from 'mint-ui';
+    import { updateOrdersStatus } from '@/api/parkAndFetch';
 
     const HAVE_PARKED_CAR = 2;
     const HAVE_FETCHED_CAR = 3;
@@ -50,6 +52,21 @@
                 this.operatedOrder.status = HAVE_PARKED_CAR;
                 this.$store.state.operatedOrder = this.operatedOrder;
                 this.$router.push('/chooseParkingLot');
+            },
+            fetchCar(order) {
+                this.operatedOrder = order;
+                this.operatedOrder.status = HAVE_FETCHED_CAR;
+                this.$store.state.operatedOrder = this.operatedOrder;
+                updateOrdersStatus(this.$store.state.operatedOrder).then(() => {
+                    this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    Toast({
+                        message: '取车成功',
+                        iconClass: 'icon icon-success'
+                    });
+                }).catch((err) => {
+                    // eslint-disable-next-line no-console
+                    console.log(err.message)
+                });
             }
         }
     };

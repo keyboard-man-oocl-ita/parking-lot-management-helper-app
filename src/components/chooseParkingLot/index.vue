@@ -26,6 +26,7 @@
             // eslint-disable-next-line no-console
                 getParkingLotsByParkingBoyId(this.parkingBoyId).then((res)=>{
                     this.parkingLots = res.data
+                    this.$store.dispatch('getOrderList', this.parkingBoyId);
                 }).catch((err) => {
                     // eslint-disable-next-line no-console
                     console.log(err.message)
@@ -52,6 +53,7 @@
                 this.operatedOrder.parkingLotId = this.selectedParkingLot.parkingLotId;
                 delete this.operatedOrder.parkingLotName;
                 updateOrdersParkingLotAndStatus(this.operatedOrder).then(() => {
+                    this.$store.dispatch('getOrderList', this.parkingBoyId);
                     Toast({
                         message: `已停车至${this.selectedParkingLot.name}`,
                         iconClass: 'icon icon-success'
