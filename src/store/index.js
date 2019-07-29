@@ -1,27 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
+
+import { getOrderList } from '@/api/parkAndFetch'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-
-    clerkOrderList:[]
-
+    clerkOrderList: []
   },
-  mutations:{
-    setOrderList(state,list){
+  mutations: {
+    setOrderList(state, list) {
       state.clerkOrderList = list
     }
   },
-  actions:{
-    getOrderList({commit}){
-      axios.get("http://localhost:8080/orders/1")
-          .then(res=>{
-            commit('setOrderList',res.data)
-          })
-          .catch(error=>console.log(error));
+  actions: {
+    async getOrderList({ commit }) {
+      let result = await getOrderList()
+      commit('setOrderList', result.data)
     }
   }
 })
