@@ -6,3 +6,4 @@ export function getOrderList(id) {
     method: 'get',
   })
 }
+

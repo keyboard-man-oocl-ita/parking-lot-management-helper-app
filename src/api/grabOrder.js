@@ -9,8 +9,8 @@ export function fetchOrdersByParkingBoyId(parkingBoyId) {
 
 export function updateOrdersClerkIdAndStatus(data) {
   return request({
-    url: 'orders',
-    method: `put`,
+    url: '/orders',
+    method: 'put',
     data
   })
 }

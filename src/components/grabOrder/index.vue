@@ -20,6 +20,8 @@
     import {MessageBox, Toast} from "mint-ui";
     import {mapState} from 'vuex';
 
+    const HAVE_RECEIVE_ORDER = 1;
+
     export default {
         name: "grabOrder",
         created(){
@@ -65,7 +67,7 @@
             grabOrder(item) {
                 this.selectedOrder = item;
                 this.selectedOrder.clerkId = this.parkingBoyId;
-                this.selectedOrder.status = 1;
+                this.selectedOrder.status = HAVE_RECEIVE_ORDER;
                 MessageBox.confirm("是否抢单", "提示").then(
                     action => {
                         if (action == "confirm") {

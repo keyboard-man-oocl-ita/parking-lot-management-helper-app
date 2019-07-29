@@ -14,6 +14,7 @@
     import MyHeader from '@/components/MyHeader/index'
     import { Toast } from 'mint-ui';
     import { getParkingLotsByParkingBoyId } from '@/api/chooseParkingLot'
+    import {mapState} from 'vuex'
 
     export default {
         name: "index.vue",
@@ -23,7 +24,7 @@
         created: function () {
 
             // eslint-disable-next-line no-console
-                getParkingLotsByParkingBoyId(this.parkingboyId).then((res)=>{
+                getParkingLotsByParkingBoyId(this.parkingBoyId).then((res)=>{
                     this.parkingLots = res.data
                 }).catch((err) => {
                     // eslint-disable-next-line no-console
@@ -34,17 +35,20 @@
         data() {
             return {
                 selectedParkingLot: ``,
-                parkingboyId: 1,
                 parkingLots: [],
             }
         },
         computed: {
+            ...mapState({
+                parkingBoyId: state => state.parkingBoyId
+            }),
             notSelected() {
                 return this.selectedParkingLot === `` ? true : false;
             }
         },
         methods: {
             confirmPark() {
+                // 选择停车场
                 Toast({
                     message: `已停车至${this.selectedParkingLot.name}`,
                     iconClass: 'icon icon-success'
