@@ -9,7 +9,7 @@ const router = [
     name: 'Example',
     component: () => import('@/components/example/index'),
     children: [
-      //  第一个页面子组件
+      // 第一个页面Tab
       {
         path: '/grabOrder',
         name: 'grabOrder',
@@ -20,24 +20,24 @@ const router = [
         name: 'chooseParkingLot',
         component: () => import('@/components/chooseParkingLot/index')
       },
-      //  第二个页面
+      // 第二个页面Tab
       {
         path: '/parkAndFetch',
         name: 'parkAndFetch',
         component: () => import('@/components/parkAndFetch/index')
       },
-      //  第三个页面
+      // 第三个页面Tab
       {
         path: '/history',
         name: 'history',
-        component: () => import('@/components/history/index')
+        component: () => import('@/components/history/index'),
       },
       {
-        path: '/details',
+        path: '/history/:id',
         name: 'details',
         component: () => import('@/components/historyDetails/index')
       },
-      //  第四个页面
+      // 第四个页面Tab
       {
         path: '/personal',
         name: 'personal',
@@ -45,6 +45,7 @@ const router = [
       },
     ]
   },
+  // 登录注册route
   {
     path: '/register',
     name: 'register',

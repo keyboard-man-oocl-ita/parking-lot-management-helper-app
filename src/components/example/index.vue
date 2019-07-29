@@ -43,19 +43,19 @@ export default {
     selected() {
       switch (this.selected) {
         case "tab1":
-          this.$router.push("grabOrder");
+          this.$router.push("/grabOrder");
           break;
 
         case "tab2":
-          this.$router.push("parkAndFetch");
+          this.$router.push("/parkAndFetch");
           break;
 
         case "tab3":
-          this.$router.push("history");
+          this.$router.push("/history");
           break;
 
         case "tab4":
-          this.$router.push("personal");
+          this.$router.push("/personal");
           break;
 
         default:

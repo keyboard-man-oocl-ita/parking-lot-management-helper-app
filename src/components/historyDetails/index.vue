@@ -5,10 +5,12 @@
     <div class="details_content">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <span>{{'车牌号： ' + details.carLicense }}</span>
+          <span>{{'订单ID： ' +  details.order_id }}</span>
         </div>
-        <div class="text item">{{'订单ID： ' + details.orderId }}</div>
-        <div class="text item">{{'停车时间： ' + details.parktime }}</div>
+        <div class="text item">{{'车牌号： ' + details.car_license }}</div>
+        <div class="text item">{{'下单时间： ' + details.created_time }}</div>
+        <div class="text item">{{'结单时间： ' + details.end_time }}</div>
+        <div class="text item">{{'停车时间： ' + details.park_time }}</div>
       </el-card>
     </div>
   </div>
@@ -23,13 +25,21 @@ export default {
   components: {
     MyHeader
   },
-  mounted() {},
+  mounted() {
+    // this.$store.state.orderHistory.forEach(item => {
+    //   if (item.order_Id == this.$route.params) {
+    //     this.details = item;
+    //   }
+    // });
+  },
   data() {
     return {
       details: {
-        orderId: "111111",
-        carLicense: "粤A 88888",
-        parktime: "1小时20分"
+        order_id: "123456789",
+        car_license: "粤A 88888",
+        created_time: "19:00",
+        end_time: "20:00",
+        park_time: "1小时0分"
       }
     };
   },
