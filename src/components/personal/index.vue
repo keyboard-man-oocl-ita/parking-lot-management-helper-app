@@ -1,8 +1,8 @@
 <template>
   <div>
     <MyHeader :title="'个人信息'"></MyHeader>
-    <div class="logo">
-      <el-image style="width: 100px; height: 100px" :src="url"></el-image>
+    <div style="margin: auto;width: 100px;">
+      <el-avatar size="large" :src="url" fit="fill" style="margin-top: 50px;width: 100px;height: 100px;"></el-avatar>
     </div>
     <mt-field label="手机号" type="tel" readonly value="13866668888" disableClear></mt-field>
     <mt-field label="邮箱" type="email" readonly value="clerk@oocl.com" disableClear></mt-field>
@@ -26,7 +26,7 @@ export default {
   created() {},
   data() {
     return {
-      url: require("@/assets/profile.svg")
+      url: require("@/assets/nezha.png")
     };
   },
   components: {
