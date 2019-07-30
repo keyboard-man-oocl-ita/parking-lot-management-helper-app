@@ -14,14 +14,15 @@
           <div>车牌号：{{item.carLicense}}</div>
           <div>停车场：{{item.parkingLotName}}</div>
           <div>下单时间：{{formatDateTest(item.createdTime)}}</div>
-          <div v-if="item.endTime">结单时间：{{formatDateTest(item.endTime)}}</div>
+          <div v-show="item.endTime">结单时间：{{formatDateTest(item.endTime)}}</div>
           <div class="order_details">
             <el-button
               type="success"
               round
               size="mini"
               icon="el-icon-check"
-              @click="comfirmOrder()"
+              @click="comfirmOrder(item.orderId)"
+              v-if="item.status == '取车中'"
             >确认订单</el-button>
           </div>
         </el-card>
@@ -64,12 +65,13 @@ export default {
     fetchData() {
       this.$store.dispatch("fetchUserOrderHistory", this.userId);
     },
-    comfirmOrder() {
+    comfirmOrder(orderId) {
       MessageBox.confirm("是否确认订单完成", "提示").then(
         action => {
           if (action == "confirm") {
-            updateOrderStatusByUserId({userId: this.userId, status: CONFIRM_ORDER})
-              .then(() => {
+            updateOrderStatusByUserId({orderId: orderId, status: CONFIRM_ORDER})
+              .then((res) => {
+                console.log(res.data)
                 this.fetchData();
                 Toast({
                   message: "订单完成",

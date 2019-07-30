@@ -9,7 +9,7 @@ export function fetchUserOrder(id) {
 
 export function updateOrderStatusByUserId(data) {
   return request({
-    url: `/orders/${data.userId}`,
+    url: `/orders/${data.orderId}`,
     method: 'patch',
     data: {
       status: data.status
