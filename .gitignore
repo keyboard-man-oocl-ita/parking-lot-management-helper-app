@@ -1,3 +1,5 @@
+package-lock.json
+
 # Logs
 logs
 *.log
@@ -68,3 +70,7 @@ typings/
 *.njsproj
 *.sln
 *.sw?
+/package-lock.json
+
+# packed files
+dist/
