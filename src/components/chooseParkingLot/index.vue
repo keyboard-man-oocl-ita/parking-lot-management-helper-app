@@ -44,7 +44,7 @@
                 this.operatedOrder.parkingLotId = this.selectedParkingLot.parkingLotId;
                 delete this.operatedOrder.parkingLotName;
                 updateOrdersParkingLotAndStatus(this.operatedOrder).then(() => {
-                    this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    this.$store.dispatch('getOrderList');
                     this.loadParkingLot();
                     Toast({
                         message: `已停车至${this.selectedParkingLot.name}`,
@@ -59,7 +59,7 @@
             loadParkingLot() {
                 getParkingLotsByParkingBoyId(this.parkingBoyId).then((res)=>{
                     this.parkingLots = res.data
-                    this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    this.$store.dispatch('getOrderList');
                     // eslint-disable-next-line no-console
                     console.log("load Parking Lot Success")
                 }).catch((err) => {

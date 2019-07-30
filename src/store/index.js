@@ -32,8 +32,8 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    async getOrderList({ commit }, id) {
-      let result = await getOrderList(id)
+    async getOrderList({ commit }) {
+      let result = await getOrderList()
       commit('setOrderList', result.data)
     },
     async fetchOrderHistory({ commit }, payload) {

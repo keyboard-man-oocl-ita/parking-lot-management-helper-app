@@ -44,9 +44,9 @@
             };
         },
         mounted() {
-            this.$store.dispatch('getOrderList', this.parkingBoyId);
+            this.$store.dispatch('getOrderList');
             setInterval(() => {
-                this.$store.dispatch('getOrderList', this.parkingBoyId);
+                this.$store.dispatch('getOrderList');
             }, 3000);
         },
         methods: {
@@ -61,7 +61,7 @@
                 this.operatedOrder.status = HAVE_FETCHED_CAR;
                 this.$store.state.operatedOrder = this.operatedOrder;
                 updateOrdersStatus(this.$store.state.operatedOrder).then(() => {
-                    this.$store.dispatch('getOrderList', this.parkingBoyId);
+                    this.$store.dispatch('getOrderList');
                     Toast({
                         message: '取车成功',
                         iconClass: "el-icon-circle-check"

@@ -19,7 +19,7 @@ service.interceptors.request.use(
     if (localStorage.getItem("token")) {
       // let each request carry token
       // please modify it according to the actual situation
-      // config.headers['Authorization'] = `Bearer ${localStorage.getItem("token")}`
+      config.headers['Authorization'] = `Bearer ${localStorage.getItem("token")}`
     }
     return config
   },
