@@ -74,9 +74,9 @@
       MyHeader
     },
     data() {
-      const validateUsername = (rule, value, callback) => {
+      const validatePhoneNumber = (rule, value, callback) => {
         if (!value) {
-          callback(new Error("Please enter the correct user name"));
+          callback(new Error("Please enter the correct phoneNumber"));
         } else {
           callback();
         }
@@ -113,7 +113,7 @@
         },
         registerRules: {
           phoneNumber: [
-            {required: true, trigger: "blur", validator: validateUsername}
+            {required: true, trigger: "blur", validator: validatePhoneNumber}
           ],
           password: [
             {trigger: "blur", validator: validatePass}
@@ -153,7 +153,7 @@
         this.$refs.registerForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            userRegister(this.registerForm).then((res) => {
+            userRegister(this.registerForm).then(() => {
               this.$router.push("/login");
               this.loading = false;
             }).catch((err) => {

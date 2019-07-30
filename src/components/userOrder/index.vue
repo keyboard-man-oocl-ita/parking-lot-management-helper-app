@@ -70,8 +70,7 @@ export default {
         action => {
           if (action == "confirm") {
             updateOrderStatusByUserId({orderId: orderId, status: CONFIRM_ORDER})
-              .then((res) => {
-                console.log(res.data)
+              .then(() => {
                 this.fetchData();
                 Toast({
                   message: "订单完成",

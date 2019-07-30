@@ -2,7 +2,7 @@
   <div>
     <mt-header fixed :title="title">
       <div slot="right">
-        <mt-button @click="handleClose">退出登录</mt-button>
+        <mt-button @click="handleClose">退出</mt-button>
       </div>
     </mt-header>
   </div>
@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     handleClose() {
-      MessageBox.confirm("是否退出登录", "提示").then(
+      MessageBox.confirm("是否注销", "提示").then(
         action => {
           if (action == "confirm") {
             localStorage.removeItem("token");

@@ -30,17 +30,17 @@
           </el-radio-group>
         </el-form-item>
         <el-button
-                style="width:100%;margin-top:16px;"
-                @click.native.prevent="addUser"
-                size="small"
-        >普通用户注册</el-button>
-        <el-button
           :loading="loading"
           type="primary"
           style="width:100%;margin-top:16px;margin-left: 0px"
           @click.native.prevent="handleLogin"
           size="small"
         >登录</el-button>
+        <el-button
+          style="width:100%;margin-top:16px;margin-left: 0px"
+          @click.native.prevent="addUser"
+          size="small"
+        >普通用户注册</el-button>
       </el-form>
     </div>
   </div>
@@ -48,7 +48,7 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
-import {appLogin} from "../../api/login";
+import { appLogin } from "@/api/login";
 
 export default {
   name: "login",
@@ -75,7 +75,7 @@ export default {
       loginForm: {
         phoneNumber: "",
         password: "",
-        role:""
+        role: ""
       },
       loginRules: {
         phoneNumber: [
@@ -84,9 +84,7 @@ export default {
         password: [
           { required: true, trigger: "blur", validator: validatePassword }
         ],
-        role: [
-          { required: true, message: '请选择用户类型', trigger: 'change' }
-        ],
+        role: [{ required: true, message: "请选择用户类型", trigger: "change" }]
       },
       passwordType: "password",
       capsTooltip: false,
@@ -113,25 +111,27 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          appLogin(this.loginForm).then((res)=>{
-            localStorage.setItem("token", res.data.token);
-            if (this.loginForm.role == 'user') {
-              this.$router.push("/parkCar");
-            }else {
-              this.$router.push("/grabOrder");
-            }
-            this.loading = false;
-          }).catch((err) => {
-            this.loading=false;
-            this.$message.error(err.response.data);
-          });
+          appLogin(this.loginForm)
+            .then(res => {
+              localStorage.setItem("token", res.data.token);
+              if (this.loginForm.role == "user") {
+                this.$router.push("/parkCar");
+              } else {
+                this.$router.push("/grabOrder");
+              }
+              this.loading = false;
+            })
+            .catch(err => {
+              this.loading = false;
+              this.$message.error(err.response.data);
+            });
         } else {
           return false;
         }
       });
     },
-    addUser(){
-      this.$router.push('register');
+    addUser() {
+      this.$router.push("register");
     }
   }
 };
