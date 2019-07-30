@@ -4,12 +4,13 @@ import axios from 'axios'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  // baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: 'http://localhost:8848',
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000 // request timeout
 })
 
-service.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`
+// service.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`
 
 // request interceptor
 service.interceptors.request.use(

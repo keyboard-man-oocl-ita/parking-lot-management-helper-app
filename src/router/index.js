@@ -7,6 +7,7 @@ const router = [
   {
     path: '/',
     name: 'Example',
+    redirect:'/login',
     component: () => import('@/components/example/index'),
     children: [
       // 第一个页面Tab
