@@ -116,7 +116,7 @@ export default {
           appLogin(this.loginForm).then((res)=>{
             localStorage.setItem("token", res.data.token);
             if (this.loginForm.role == 'users') {
-              this.$router.push("user/parkCar");
+              this.$router.push("/parkCar");
             }else {
               this.$router.push("/grabOrder");
             }
