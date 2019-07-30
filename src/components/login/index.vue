@@ -33,7 +33,6 @@
                 style="width:100%;margin-top:16px;"
                 @click.native.prevent="addUser"
                 size="small"
-                plain
         >普通用户注册</el-button>
         <el-button
           :loading="loading"
@@ -121,8 +120,10 @@ export default {
             }else {
               this.$router.push("/grabOrder");
             }
+            this.loading = false;
           }).catch((err) => {
-            console.log(err.message);
+            this.loading=false;
+            this.$message.error(err.response.data);
           });
         } else {
           return false;

@@ -5,7 +5,7 @@
             <el-avatar size="large" icon="el-icon-user-solid" style="margin-top: 50px"></el-avatar>
         </div>
         <div class="login_content">
-            <el-form ref="registerForm" :model="registerForm" :rules="registerRules" >
+            <el-form ref="registerForm" :model="registerForm" :rules="registerRules">
                 <el-form-item prop="phoneNumber">
                     <el-input placeholder="请输入手机号码" v-model="registerForm.phoneNumber" clearable>
                         <i class="el-input__icon el-icon-phone" slot="prefix"></i>
@@ -45,14 +45,20 @@
                         ></el-input>
                     </el-form-item>
                 </el-tooltip>
-                <el-button
-                        :loading="loading"
-                        type="primary"
-                        style="width:100%;margin-top:16px;margin-bottom:30px;"
-                        @click.native.prevent="handleRegister"
-                        size="small"
-                >注册用户
-                </el-button>
+                <el-form-item>
+                    <el-button
+                            style="width:100%;margin-top:16px;"
+                            @click.native.prevent="resetRegisterForm"
+                    >重置
+                    </el-button>
+                    <el-button
+                            :loading="loading"
+                            type="primary"
+                            style="width:100%;margin-top:16px;margin-left: 0px"
+                            @click.native.prevent="handleRegister"
+                    >注册用户
+                    </el-button>
+                </el-form-item>
             </el-form>
         </div>
     </div>
@@ -127,8 +133,8 @@
         loading: false
       }
     },
-    methods:{
-      checkCapslock({ shiftKey, key } = {}) {
+    methods: {
+      checkCapslock({shiftKey, key} = {}) {
         if (key && key.length === 1) {
           if (
               (shiftKey && (key >= "a" && key <= "z")) ||
@@ -143,19 +149,24 @@
           this.capsTooltip = false;
         }
       },
-      handleRegister(){
+      handleRegister() {
         this.$refs.registerForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            userRegister(this.registerForm).then((res)=>{
-                this.$router.push("/login");
+            userRegister(this.registerForm).then((res) => {
+              this.$router.push("/login");
+              this.loading = false;
             }).catch((err) => {
-              console.log(err.message);
+              this.loading = false;
+              this.$message.error(err.response.data);
             });
           } else {
             return false;
           }
         });
+      },
+      resetRegisterForm() {
+        this.$refs['registerForm'].resetFields();
       }
     }
   }
