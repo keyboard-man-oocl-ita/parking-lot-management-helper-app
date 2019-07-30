@@ -50,7 +50,6 @@ export default {
   },
   data() {
     return {
-      userId: "f3a947d6-5eb6-4135-9e63-a0b239bf3519",
       userOrderSetInterval: ""
     };
   },
@@ -62,7 +61,7 @@ export default {
       return formatDate(timeStamp);
     },
     fetchData() {
-      this.$store.dispatch("fetchUserOrderHistory", this.userId);
+      this.$store.dispatch("fetchUserOrderHistory");
     },
     comfirmOrder(orderId) {
       MessageBox.confirm("是否确认订单完成", "提示").then(
@@ -120,8 +119,8 @@ export default {
   align-items: center;
 }
 .el-collapse-item__header {
-  font-weight: 600;
-  font-size: 13px;
+  font-weight: 550;
+  font-size: 10px;
   height: 48px;
   line-height: 24px;
 }
