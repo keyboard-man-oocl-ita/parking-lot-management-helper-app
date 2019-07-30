@@ -40,7 +40,7 @@
         mounted() {
             this.idOfSetInterval = setInterval(() => {
                 this.fetchData()
-            }, 5000);
+            }, 3000);
         },
         beforeDestroy() {
             clearInterval(this.idOfSetInterval)

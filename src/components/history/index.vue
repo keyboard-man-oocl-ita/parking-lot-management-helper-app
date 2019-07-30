@@ -21,7 +21,7 @@ import MyHeader from "@/components/MyHeader/index";
 import { mapState } from "vuex";
 import { formatDate } from '@/utils/dateFormat'
 
-const HAVED_FINISH_ORDER = 4
+const HAVED_FINISH_ORDER = 5
 
 export default {
   name: "history",

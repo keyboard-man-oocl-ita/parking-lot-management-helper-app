@@ -10,8 +10,10 @@ export function parkCarByUserIdAndCar(data) {
 
 export function fetchCarByUserId(data) {
   return request({
-    url: "/orders",
-    method: 'put',
-    data
+    url: `/orders/${data.orderId}`,
+    method: 'patch',
+    data :{
+      status : data.status
+    }
   })
 }

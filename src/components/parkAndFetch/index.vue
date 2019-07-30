@@ -9,7 +9,7 @@
             <el-table-column label="操作">
                 <template slot-scope="scope">
                     <el-button type="primary" @click="parkCar(scope.row)" v-if="scope.row.status === '已接单'">停车</el-button>
-                    <el-button type="primary" @click="fetchCar(scope.row)" v-if="scope.row.status === '已停车'">取车</el-button>
+                    <el-button type="primary" @click="fetchCar(scope.row)" v-if="scope.row.status === '请求取车'">取车</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -44,7 +44,10 @@
             };
         },
         mounted() {
-            this.$store.dispatch('getOrderList', this.parkingBoyId)
+            this.$store.dispatch('getOrderList', this.parkingBoyId);
+            setInterval(() => {
+                this.$store.dispatch('getOrderList', this.parkingBoyId);
+            }, 3000);
         },
         methods: {
             parkCar(order) {
