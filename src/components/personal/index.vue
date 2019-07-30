@@ -10,11 +10,11 @@
     <mt-field label="冻结状态" readonly value="Active" disableClear></mt-field>
     <mt-field label="直属上司" readonly value="Parking Manager" disableClear></mt-field>
     <el-button
-          type="primary"
-          style="width:100%;margin-top:20px;margin-bottom:30px;"
-          @click.native.prevent="handleUpdate"
-          size="small"
-        >更新信息</el-button>
+      type="primary"
+      style="width:100%;margin-top:20px;margin-bottom:30px;"
+      @click.native.prevent="handleUpdate"
+      size="small"
+    >更新信息</el-button>
   </div>
 </template>
 
@@ -23,21 +23,17 @@ import MyHeader from "@/components/MyHeader/index";
 
 export default {
   name: "personal",
-  created(){
-
-  },
-  data(){
+  created() {},
+  data() {
     return {
-      url: require("@/assets/profile.svg"),
-    }
+      url: require("@/assets/profile.svg")
+    };
   },
   components: {
     MyHeader
   },
-  methods:{
-    handleUpdate(){
-
-    }
+  methods: {
+    handleUpdate() {}
   }
 };
 </script>
