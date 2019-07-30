@@ -67,6 +67,7 @@
 <script>
   import MyHeader from "@/components/MyHeader/index";
   import {userRegister} from "../../api/register";
+  import {validateChineseName, validatePhoneNumber, validateVehicleNumber} from "../../utils/validate";
 
   export default {
     name: "register",
@@ -76,7 +77,18 @@
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!value) {
-          callback(new Error("Please enter the correct user name"));
+          callback(new Error("手机号码不能为空"));
+        } else if (!validatePhoneNumber(value)) {
+          callback(new Error("请输入正确的手机号码"));
+        } else {
+          callback();
+        }
+      };
+      const validateCarLicense = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error("车牌号不能为空"));
+        } else if (!validateVehicleNumber(value)) {
+          callback(new Error("请输入正确的车牌号"));
         } else {
           callback();
         }
@@ -85,7 +97,7 @@
         if (value === '') {
           callback(new Error('请输入密码'));
         } else if (value.length < 6) {
-          callback(new Error("The password can not be less than 6 digits"));
+          callback(new Error("密码长度不能小于6位"));
         } else {
           if (this.registerForm.confirmPassword !== '') {
             this.$refs.registerForm.validateField('checkPass');
@@ -98,6 +110,15 @@
           callback(new Error('请再次输入密码'));
         } else if (value !== this.registerForm.password) {
           callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
+      const validateName = (rule, value, callback) => {
+        if (!value) {
+          callback(new Error("姓名不能为空"));
+        } else if (!validateChineseName(value)) {
+          callback(new Error('请输入正确的姓名'));
         } else {
           callback();
         }
@@ -122,10 +143,10 @@
             {trigger: "blur", validator: validatePass2}
           ],
           carLicense: [
-            {required: true, message: '请输入车牌号', trigger: 'change'}
+            {required: true, trigger: 'blur', validator: validateCarLicense}
           ],
           name: [
-            {required: true, message: '请输入姓名', trigger: 'change'}
+            {required: true, trigger: 'blur', validator: validateName}
           ],
         },
         passwordType: "password",

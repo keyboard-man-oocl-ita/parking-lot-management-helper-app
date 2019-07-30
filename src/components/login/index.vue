@@ -49,6 +49,7 @@
 <script>
 import MyHeader from "@/components/MyHeader/index";
 import {appLogin} from "../../api/login";
+import {validatePhoneNumber} from "../../utils/validate";
 
 export default {
   name: "login",
@@ -58,14 +59,16 @@ export default {
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!value) {
-        callback(new Error("Please enter the correct user name"));
+        callback(new Error("手机号码不能为空"));
+      } else if (!validatePhoneNumber(value)) {
+        callback(new Error("请输入正确的手机号码"));
       } else {
         callback();
       }
     };
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error("The password can not be less than 6 digits"));
+        callback(new Error("密码长度不能小于6位"));
       } else {
         callback();
       }

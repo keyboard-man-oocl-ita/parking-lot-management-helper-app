@@ -81,3 +81,27 @@ export function isArray(arg) {
   }
   return Array.isArray(arg)
 }
+
+
+export function validatePhoneNumber(str){
+  if(!(/^1[3456789]\d{9}$/.test(str))){
+    return false;
+  }
+  return true;
+}
+
+export function validateChineseName(str){
+  if(!(/^[\u4e00-\u9fa5 ]{2,20}$/.test(str))){
+    return false;
+  }
+  return true;
+}
+
+export function validateVehicleNumber(vehicleNumber) {
+  let result = false;
+  if (vehicleNumber.length == 7){
+    let express = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$/;
+    result = express.test(vehicleNumber);
+  }
+  return result;
+}
