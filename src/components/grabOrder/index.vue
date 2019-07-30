@@ -24,7 +24,6 @@ import {
   updateOrdersClerkIdAndStatus
 } from "@/api/grabOrder";
 import { MessageBox, Toast } from "mint-ui";
-import { mapState } from "vuex";
 import { formatDate } from "@/utils/dateFormat";
 
 const HAVE_RECEIVE_ORDER = 1;
@@ -35,9 +34,7 @@ export default {
     this.fetchData();
   },
   computed: {
-    ...mapState({
-      parkingBoyId: state => state.parkingBoyId
-    })
+
   },
   mounted() {
     this.idOfSetInterval = setInterval(() => {
@@ -73,7 +70,6 @@ export default {
     },
     grabOrder(item) {
       this.selectedOrder = item;
-      this.selectedOrder.clerkId = this.parkingBoyId;
       this.selectedOrder.status = HAVE_RECEIVE_ORDER;
       MessageBox.confirm("是否抢单", "提示").then(
         action => {

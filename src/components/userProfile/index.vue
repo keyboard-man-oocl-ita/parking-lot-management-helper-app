@@ -39,7 +39,6 @@ export default {
     fetchData() {
       var self = this;
       fetchUserProfile().then(res => {
-        console.log(res.data);
         self.userProfile = res.data;
       });
     }
@@ -47,14 +46,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .userProfile_logo {
   margin: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.el-image__inner{
-  margin-top: 2px;
 }
 </style>

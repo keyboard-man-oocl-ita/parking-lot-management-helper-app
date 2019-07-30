@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getParkingLotsByParkingBoyId(id) {
+export function getParkingLotsByParkingBoyId() {
     return request({
-        url: `/parkingLots/${id}`,
+        url: "/parkingBoys/parkingLots",
         method: 'get'
     })
 }

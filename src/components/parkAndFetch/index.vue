@@ -41,13 +41,17 @@
             return {
                 status: '',
                 operatedOrder: {},
+                getOrderInterval:''
             };
         },
         mounted() {
             this.$store.dispatch('getOrderList');
-            setInterval(() => {
+            this.getOrderInterval = setInterval(() => {
                 this.$store.dispatch('getOrderList');
             }, 3000);
+        },
+        beforeDestroy(){
+            clearInterval(this.getOrderInterval)
         },
         methods: {
             parkCar(order) {

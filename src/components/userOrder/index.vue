@@ -11,7 +11,7 @@
       >
         <el-card class="box-card">
           <div>车牌号：{{item.carLicense}}</div>
-          <div>停车场：{{item.parkingLotName}}</div>
+          <div v-show="item.parkingLotName">停车场：{{item.parkingLotName}}</div>
           <div>下单时间：{{formatDateTest(item.createdTime)}}</div>
           <div v-show="item.endTime">结单时间：{{formatDateTest(item.endTime)}}</div>
           <div class="order_details">

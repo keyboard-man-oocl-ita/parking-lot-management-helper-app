@@ -10,8 +10,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     clerkOrderList: [],
-    parkingBoyId: "6f16388d-98eb-41ef-ba14-b5358678a5ca",
-    userId: '',
+    parkingBoyId: "",
+    currentUser: '',
     orderHistory: [],
     operatedOrder: {},
     parkCar: true,
@@ -40,8 +40,8 @@ const store = new Vuex.Store({
       let result = await fetchHistoryOrdersByParkingBoyId(payload.status)
       commit('setHistoryOrder', result.data)
     },
-    async fetchUserOrderHistory({ commit }, id){
-      let result = await fetchUserOrder(id)
+    async fetchUserOrderHistory({ commit }){
+      let result = await fetchUserOrder()
       commit('setUserOrder', result.data)
     },
     setParkCar({ commit }){
