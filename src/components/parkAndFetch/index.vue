@@ -64,7 +64,7 @@
                     this.$store.dispatch('getOrderList', this.parkingBoyId);
                     Toast({
                         message: '取车成功',
-                        iconClass: 'icon icon-success'
+                        iconClass: "el-icon-circle-check"
                     });
                 }).catch((err) => {
                     // eslint-disable-next-line no-console

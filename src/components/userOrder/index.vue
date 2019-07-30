@@ -21,7 +21,7 @@
               round
               size="mini"
               icon="el-icon-check"
-              @click="comfirmOrder(item.userId)"
+              @click="comfirmOrder()"
             >确认订单</el-button>
           </div>
         </el-card>
@@ -35,6 +35,8 @@ import { formatDate } from "@/utils/dateFormat";
 import { updateOrderStatusByUserId } from "@/api/userOrder";
 import { MessageBox, Toast } from "mint-ui";
 import MyHeader from "@/components/MyHeader/index";
+
+const CONFIRM_ORDER = 5
 
 export default {
   name: "userOrder",
@@ -62,11 +64,11 @@ export default {
     fetchData() {
       this.$store.dispatch("fetchUserOrderHistory", this.userId);
     },
-    comfirmOrder(userId) {
+    comfirmOrder() {
       MessageBox.confirm("是否确认订单完成", "提示").then(
         action => {
           if (action == "confirm") {
-            updateOrderStatusByUserId(userId)
+            updateOrderStatusByUserId({userId: this.userId, status: CONFIRM_ORDER})
               .then(() => {
                 this.fetchData();
                 Toast({

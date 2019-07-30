@@ -48,7 +48,7 @@
                     this.loadParkingLot();
                     Toast({
                         message: `已停车至${this.selectedParkingLot.name}`,
-                        iconClass: 'icon icon-success'
+                        iconClass: "el-icon-circle-check"
                     });
                 }).catch(error => {
                     // eslint-disable-next-line no-console

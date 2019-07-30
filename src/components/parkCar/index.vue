@@ -58,6 +58,7 @@ export default {
                 self.$store.dispatch("setParkCar");
                 Toast({
                   message: "下单成功",
+                  iconClass: "el-icon-circle-check",
                   position: "bottom",
                   duration: 1500
                 });
@@ -100,6 +101,7 @@ export default {
                 self.$store.dispatch("setParkCar");
                 Toast({
                   message: "取车成功",
+                  iconClass: "el-icon-circle-check",
                   position: "bottom",
                   duration: 1500
                 });
