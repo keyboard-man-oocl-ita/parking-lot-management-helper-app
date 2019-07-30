@@ -30,17 +30,17 @@
           </el-radio-group>
         </el-form-item>
         <el-button
-                style="width:100%;margin-top:16px;"
-                @click.native.prevent="addUser"
-                size="small"
-        >普通用户注册</el-button>
-        <el-button
           :loading="loading"
           type="primary"
           style="width:100%;margin-top:16px;margin-left: 0px"
           @click.native.prevent="handleLogin"
           size="small"
         >登录</el-button>
+        <el-button
+          style="width:100%;margin-top:16px;margin-left: 0px"
+          @click.native.prevent="addUser"
+          size="small"
+        >普通用户注册</el-button>
       </el-form>
     </div>
   </div>
@@ -48,7 +48,7 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
-import {appLogin} from "../../api/login";
+import { appLogin } from "@/api/login";
 import {validatePhoneNumber} from "../../utils/validate";
 
 export default {
@@ -78,7 +78,7 @@ export default {
       loginForm: {
         phoneNumber: "",
         password: "",
-        role:""
+        role: ""
       },
       loginRules: {
         phoneNumber: [
@@ -133,8 +133,8 @@ export default {
         }
       });
     },
-    addUser(){
-      this.$router.push('register');
+    addUser() {
+      this.$router.push("register");
     }
   }
 };

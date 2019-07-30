@@ -4,8 +4,7 @@
 
     <el-collapse>
       <el-collapse-item
-        :title="`订单号：${item.orderId}
-        订单状态：${item.status}`"
+        :title="`订单号：${item.orderId}\n订单状态：${item.status}`"
         :name="index"
         v-for="(item, index) in orders"
         :key="index"
@@ -37,7 +36,7 @@ import { updateOrderStatusByUserId } from "@/api/userOrder";
 import { MessageBox, Toast } from "mint-ui";
 import MyHeader from "@/components/MyHeader/index";
 
-const CONFIRM_ORDER = 5
+const CONFIRM_ORDER = 5;
 
 export default {
   name: "userOrder",
@@ -69,9 +68,11 @@ export default {
       MessageBox.confirm("是否确认订单完成", "提示").then(
         action => {
           if (action == "confirm") {
-            updateOrderStatusByUserId({orderId: orderId, status: CONFIRM_ORDER})
-              .then((res) => {
-                console.log(res.data)
+            updateOrderStatusByUserId({
+              orderId: orderId,
+              status: CONFIRM_ORDER
+            })
+              .then(() => {
                 this.fetchData();
                 Toast({
                   message: "订单完成",
@@ -119,8 +120,8 @@ export default {
   align-items: center;
 }
 .el-collapse-item__header {
-  font-weight: 200;
-  font-size: 6px;
+  font-weight: 600;
+  font-size: 13px;
   height: 48px;
   line-height: 24px;
 }

@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function fetchHistoryOrdersByParkingBoyId(id, status) {
+export function fetchHistoryOrdersByParkingBoyId(status) {
   return request({
-    url: `/orders?clerkId=${id}&status=${status}`,
+    url: `/orders?status=${status}`,
     method: 'get',
   })
 }

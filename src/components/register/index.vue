@@ -75,7 +75,7 @@
       MyHeader
     },
     data() {
-      const validateUsername = (rule, value, callback) => {
+      const validatePhoneNumber = (rule, value, callback) => {
         if (!value) {
           callback(new Error("手机号码不能为空"));
         } else if (!validatePhoneNumber(value)) {
@@ -134,7 +134,7 @@
         },
         registerRules: {
           phoneNumber: [
-            {required: true, trigger: "blur", validator: validateUsername}
+            {required: true, trigger: "blur", validator: validatePhoneNumber}
           ],
           password: [
             {trigger: "blur", validator: validatePass}
@@ -174,7 +174,7 @@
         this.$refs.registerForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            userRegister(this.registerForm).then((res) => {
+            userRegister(this.registerForm).then(() => {
               this.$router.push("/login");
               this.loading = false;
             }).catch((err) => {

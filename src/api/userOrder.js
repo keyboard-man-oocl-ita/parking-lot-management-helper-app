@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function fetchUserOrder(id) {
+export function fetchUserOrder() {
   return request({
-    url: `/orders?userId=${id}`,
+    url: `/users/orders`,
     method: 'get',
   })
 }

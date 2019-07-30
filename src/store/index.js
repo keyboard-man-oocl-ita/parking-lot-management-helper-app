@@ -11,6 +11,7 @@ const store = new Vuex.Store({
   state: {
     clerkOrderList: [],
     parkingBoyId: "6f16388d-98eb-41ef-ba14-b5358678a5ca",
+    userId: '',
     orderHistory: [],
     operatedOrder: {},
     parkCar: true,
@@ -36,7 +37,7 @@ const store = new Vuex.Store({
       commit('setOrderList', result.data)
     },
     async fetchOrderHistory({ commit }, payload) {
-      let result = await fetchHistoryOrdersByParkingBoyId(payload.id, payload.status)
+      let result = await fetchHistoryOrdersByParkingBoyId(payload.status)
       commit('setHistoryOrder', result.data)
     },
     async fetchUserOrderHistory({ commit }, id){
