@@ -7,7 +7,7 @@
     <div class="login_content">
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules">
         <el-form-item prop="username">
-          <el-input placeholder="请输入手机号码" v-model="loginForm.username" clearable>
+          <el-input placeholder="请输入手机号码" v-model="loginForm.phoneNumber" clearable>
             <i class="el-input__icon el-icon-user" slot="prefix"></i>
           </el-input>
         </el-form-item>
@@ -23,6 +23,12 @@
             ></el-input>
           </el-form-item>
         </el-tooltip>
+        <el-form-item label="用户类型" prop="role">
+          <el-radio-group v-model="loginForm.role">
+            <el-radio label="clerks">停车员</el-radio>
+            <el-radio label="users">普通用户</el-radio>
+          </el-radio-group>
+        </el-form-item>
         <el-button
           :loading="loading"
           type="primary"
@@ -37,6 +43,7 @@
 
 <script>
 import MyHeader from "@/components/MyHeader/index";
+import {appLogin} from "../../api/login";
 
 export default {
   name: "login",
@@ -61,16 +68,20 @@ export default {
     return {
       url: require("@/assets/logo.png"),
       loginForm: {
-        username: "",
-        password: ""
+        phoneNumber: "",
+        password: "",
+        role:""
       },
       loginRules: {
-        username: [
+        phoneNumber: [
           { required: true, trigger: "blur", validator: validateUsername }
         ],
         password: [
           { required: true, trigger: "blur", validator: validatePassword }
-        ]
+        ],
+        role: [
+          { required: true, message: '请选择用户类型', trigger: 'change' }
+        ],
       },
       passwordType: "password",
       capsTooltip: false,
@@ -97,19 +108,16 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$router.push("/")
-          // this.$store
-          //   .dispatch("user/login", this.loginForm)
-          //   .then(() => {
-          //     this.$router.push({
-          //       path: this.redirect || "/",
-          //       query: this.otherQuery
-          //     });
-          //     this.loading = false;
-          //   })
-          //   .catch(() => {
-          //     this.loading = false;
-          //   });
+          appLogin(this.loginForm).then((res)=>{
+            localStorage.setItem("token", res.data.token);
+            if (this.loginForm.role == 'users') {
+              this.$router.push("user/parkCar");
+            }else {
+              this.$router.push("/grabOrder");
+            }
+          }).catch((err) => {
+            console.log(err.message);
+          });
         } else {
           return false;
         }

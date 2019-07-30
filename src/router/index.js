@@ -76,7 +76,7 @@ const router = [
       component: () => import('@/components/userOrder/index')
     }]
   }
-]
+];
 
 export default new Router({
   routes: router
