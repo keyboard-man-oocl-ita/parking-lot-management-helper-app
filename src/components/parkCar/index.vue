@@ -95,7 +95,6 @@ export default {
         action => {
           if (action == "confirm") {
             self.myOrder.status = REQUEST_PICKCAR;
-            console.log(self.myOrder);
             fetchCarByUserId(self.myOrder)
               .then(() => {
                 self.$store.dispatch("setParkCar");
