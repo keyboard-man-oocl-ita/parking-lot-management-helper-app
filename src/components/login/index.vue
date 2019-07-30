@@ -30,12 +30,18 @@
           </el-radio-group>
         </el-form-item>
         <el-button
+                style="width:100%;margin-top:16px;"
+                @click.native.prevent="addUser"
+                size="small"
+                plain
+        >普通用户注册</el-button>
+        <el-button
           :loading="loading"
           type="primary"
-          style="width:100%;margin-top:16px;margin-bottom:30px;"
+          style="width:100%;margin-top:16px;margin-left: 0px"
           @click.native.prevent="handleLogin"
           size="small"
-        >Login</el-button>
+        >登录</el-button>
       </el-form>
     </div>
   </div>
@@ -122,6 +128,9 @@ export default {
           return false;
         }
       });
+    },
+    addUser(){
+      this.$router.push('register');
     }
   }
 };
