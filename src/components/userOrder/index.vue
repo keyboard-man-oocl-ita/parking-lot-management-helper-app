@@ -26,26 +26,30 @@
 <script>
 import { formatDate } from "@/utils/dateFormat";
 import MyHeader from "@/components/MyHeader/index";
+import axios from "axios"
 
 export default {
   name: "userOrder",
+  created(){
+    this.fetchData()
+  },
   data() {
     return {
       orders: [
-        {
-          orderId: "88848484484",
-          carLicense: "粤R 12345",
-          parkinglotName: "parkingLot1",
-          createTime: 1564392583977,
-          endTime: 1564392604264
-        },
-        {
-          orderId: "88848485511",
-          carLicense: "粤R 23456",
-          parkinglotName: "parkingLot2",
-          createTime: 1564392583977,
-          endTime: 1564392604264
-        }
+        // {
+        //   orderId: "88848484484",
+        //   carLicense: "粤R 12345",
+        //   parkinglotName: "parkingLot1",
+        //   createTime: 1564392583977,
+        //   endTime: 1564392604264
+        // },
+        // {
+        //   orderId: "88848485511",
+        //   carLicense: "粤R 23456",
+        //   parkinglotName: "parkingLot2",
+        //   createTime: 1564392583977,
+        //   endTime: 1564392604264
+        // }
       ]
     };
   },
@@ -56,6 +60,12 @@ export default {
     handleChange() {},
     formatDateTest(timeStamp) {
       return formatDate(timeStamp);
+    },
+    fetchData(){
+      var self = this
+      axios.get("https://www.easy-mock.com/mock/5d3f954630a01f68880d074a").then((res) => {
+        self.orders = res.data
+      })
     }
   }
 };
