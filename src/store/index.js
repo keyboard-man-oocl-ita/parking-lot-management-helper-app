@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 
 import { getOrderList } from '@/api/parkAndFetch'
 import { fetchHistoryOrdersByParkingBoyId } from '@/api/history'
+import { fetchUserOrder } from "@/api/userOrder"
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const store = new Vuex.Store({
     parkingBoyId: "6f16388d-98eb-41ef-ba14-b5358678a5ca",
     orderHistory: [],
     operatedOrder: {},
-    parkCar: true
+    parkCar: true,
+    userOrder: []
   },
   mutations: {
     setOrderList(state, list) {
@@ -23,6 +25,9 @@ const store = new Vuex.Store({
     },
     setParkCar( state ){
       state.parkCar = !state.parkCar
+    },
+    setUserOrder( state, list){
+      state.userOrder = list
     }
   },
   actions: {
@@ -33,6 +38,10 @@ const store = new Vuex.Store({
     async fetchOrderHistory({ commit }, payload) {
       let result = await fetchHistoryOrdersByParkingBoyId(payload.id, payload.status)
       commit('setHistoryOrder', result.data)
+    },
+    async fetchUserOrderHistory({ commit }, id){
+      let result = await fetchUserOrder(id)
+      commit('setUserOrder', result.data)
     },
     setParkCar({ commit }){
       commit('setParkCar')

@@ -9,6 +9,8 @@
 </template>
 
 <script>
+import { MessageBox, Toast } from "mint-ui";
+
 export default {
   name: "MyHeader",
   props: ["title"],
@@ -17,9 +19,24 @@ export default {
   },
   methods: {
     handleClose() {
-      localStorage.removeItem("token")
-      this.$router.push("/login");
-    },
+      MessageBox.confirm("是否退出登录", "提示").then(
+        action => {
+          if (action == "confirm") {
+            localStorage.removeItem("token");
+            this.$router.push("/login");
+          }
+        },
+        action => {
+          if (action == "cancel") {
+            Toast({
+              message: "已取消",
+              position: "bottom",
+              duration: 1000
+            });
+          }
+        }
+      );
+    }
   }
 };
 </script>
