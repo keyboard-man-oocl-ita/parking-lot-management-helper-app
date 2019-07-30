@@ -25,8 +25,8 @@
         </el-tooltip>
         <el-form-item label="用户类型" prop="role">
           <el-radio-group v-model="loginForm.role">
-            <el-radio label="clerks">停车员</el-radio>
-            <el-radio label="users">普通用户</el-radio>
+            <el-radio label="clerk">停车员</el-radio>
+            <el-radio label="user">普通用户</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-button
@@ -115,7 +115,7 @@ export default {
           this.loading = true;
           appLogin(this.loginForm).then((res)=>{
             localStorage.setItem("token", res.data.token);
-            if (this.loginForm.role == 'users') {
+            if (this.loginForm.role == 'user') {
               this.$router.push("/parkCar");
             }else {
               this.$router.push("/grabOrder");

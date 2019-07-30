@@ -2,7 +2,7 @@ import request from '@/utils/request'
 
 export function appLogin(loginUser) {
   return request({
-    url: `${loginUser.role}/login`,
+    url: `/auth`,
     method: 'post',
     data:loginUser
   })
