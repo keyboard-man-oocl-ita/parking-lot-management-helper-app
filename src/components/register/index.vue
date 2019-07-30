@@ -75,7 +75,7 @@
       MyHeader
     },
     data() {
-      const validatePhoneNumber = (rule, value, callback) => {
+      const validateUserName = (rule, value, callback) => {
         if (!value) {
           callback(new Error("手机号码不能为空"));
         } else if (!validatePhoneNumber(value)) {
@@ -134,7 +134,7 @@
         },
         registerRules: {
           phoneNumber: [
-            {required: true, trigger: "blur", validator: validatePhoneNumber}
+            {required: true, trigger: "blur", validator: validateUserName}
           ],
           password: [
             {trigger: "blur", validator: validatePass}
