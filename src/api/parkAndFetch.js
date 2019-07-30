@@ -1,8 +1,8 @@
 import request from '@/utils/request'
 
-export function getOrderList(id) {
+export function getOrderList() {
   return request({
-    url: `/orders?clerkId=${id}&status=1`,
+    url: `/orders?status=1`,
     method: 'get',
   })
 }

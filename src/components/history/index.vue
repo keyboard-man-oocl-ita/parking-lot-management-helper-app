@@ -29,7 +29,7 @@ export default {
     MyHeader
   },
   mounted() {
-    this.$store.dispatch("fetchOrderHistory", { id:this.parkingBoyId, status:HAVED_FINISH_ORDER });
+    this.$store.dispatch("fetchOrderHistory", { status:HAVED_FINISH_ORDER });
   },
   data() {
     return {

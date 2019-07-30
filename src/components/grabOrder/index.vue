@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     fetchData() {
-      fetchOrdersByParkingBoyId(this.parkingBoyId)
+      fetchOrdersByParkingBoyId()
         .then(res => {
           this.orders = res.data;
         })
