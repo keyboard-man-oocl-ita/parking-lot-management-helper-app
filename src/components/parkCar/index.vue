@@ -48,12 +48,16 @@ export default {
           self.ableClick == true;
         }
       } else if (res.data[0].status == "已停车") {
-        if(self.ableClick == true){
+      
+        self.$store.dispatch("setParkCar");
+        if(self.$store.state.parkCar == true){
           self.$store.dispatch("setParkCar");
           self.pickText = "PB已停车，点击按钮取车";
-              
+       
         }
-        
+         else {
+           self.pickText = "PB已停车，点击按钮取车";
+         }
       } else {
         self.ableClick = !self.ableClick;
         Toast({
