@@ -35,29 +35,27 @@ const REQUEST_PICKCAR = 3;
 
 export default {
   name: "parkCar",
-  created() {},
+  created() {
+    this.mountHavedParkCar()
+  },
   mounted() {
     var self = this;
     fetchUserProfile().then(res => {
       self.$store.state.currentUser = res.data;
     });
     fetchUserOrder().then(res => {
-       self.myOrder = res.data[0]
-      if (res.data[0].status == "已完成") {
+      if (res.data && res.data[0].status == "已完成") {
         if (self.ableClick == false) {
           self.ableClick == true;
         }
-      } else if (res.data[0].status == "已停车") {
-      
+      } else if (res.data && res.data[0].status == "已停车") {
         self.$store.dispatch("setParkCar");
-        if(self.$store.state.parkCar == true){
+        if (self.$store.state.parkCar == true) {
           self.$store.dispatch("setParkCar");
           self.pickText = "PB已停车，点击按钮取车";
-       
+        } else {
+          self.pickText = "PB已停车，点击按钮取车";
         }
-         else {
-           self.pickText = "PB已停车，点击按钮取车";
-         }
       } else {
         self.ableClick = !self.ableClick;
         Toast({
@@ -73,11 +71,10 @@ export default {
     return {
       parkUrl: require("@/assets/parkCar.svg"),
       fetchUrl: require("@/assets/fetchCar.svg"),
-      myOrder: '',
       ableClick: false,
       accepting: false,
       parkText: "点击停车",
-      pickText: "点击取车",
+      pickText: "正在处理中...",
       parkInterval: "",
       pickInterval: "",
       havedParkInterval: "",
@@ -90,10 +87,13 @@ export default {
   computed: {
     parkcar() {
       return this.$store.state.parkCar;
+    },
+    myParkOrder: {
+      set() {},
+      get() {
+        return this.$store.state.myOrder;
+      }
     }
-    // myOrder(){
-    //   return this.$store.state.curOrder
-    // }
   },
   methods: {
     parkCar() {
@@ -107,6 +107,8 @@ export default {
             };
             parkCarByUserIdAndCar(data)
               .then(res => {
+                this.$store.dispatch("setMyOrder", res.data);
+                self.myParkOrder = res.data;
                 self.$store.state.curOrder = res.data;
                 self.accepting = !self.accepting;
                 self.ableClick = !self.ableClick;
@@ -119,24 +121,10 @@ export default {
                 });
                 self.parkInterval = setInterval(() => {
                   fetchUserOrder().then(res => {
-                    res.data.forEach(item => {
-                      if (item.status == "已接单") {
-                        self.pickText = "PB已接单，正在为您停车";
-                        self.clearParkInter();
-                      }
-                    });
-                  });
-                }, 4000);
-                self.havedParkInterval = setInterval(() => {
-                  fetchUserOrder().then(res => {
-                    res.data.forEach(item => {
-                      if (item.status == "已停车") {
-                        self.accepting = !self.accepting;
-                        self.pickText = "PB已停车，点击按钮取车";
-                        self.ableClick = !self.ableClick;
-                        self.clearHavedParkInter();
-                      }
-                    });
+                    if (res.data[0].status == "已接单") {
+                      self.pickText = "PB已接单，正在为您停车";
+                      self.clearParkInter();
+                    }
                   });
                 }, 4000);
               })
@@ -165,8 +153,8 @@ export default {
       MessageBox.confirm("是否取车", "提示").then(
         action => {
           if (action == "confirm") {
-            self.myOrder.status = REQUEST_PICKCAR;
-            fetchCarByUserId(self.myOrder)
+            self.myParkOrder.status = REQUEST_PICKCAR;
+            fetchCarByUserId(self.myParkOrder)
               .then(() => {
                 self.accepting = !self.accepting;
                 self.ableClick = !self.ableClick;
@@ -220,7 +208,24 @@ export default {
     },
     clearHavedPickInter() {
       clearInterval(this.pickInterval);
+    },
+    mountHavedParkCar(){
+      var self = this
+      this.havedParkInterval = setInterval(() => {
+        fetchUserOrder().then(res => {
+          if (res.data[0].status == "已停车") {
+            self.pickText = "PB已停车，点击按钮取车";
+            if(self.ableClick == true){
+              self.ableClick = !self.ableClick;
+            }
+            self.clearHavedParkInter();
+          }
+        });
+      }, 4000);
     }
+  },
+  beforeDestroy(){
+    clearInterval(this.havedParkInterval)
   }
 };
 </script>

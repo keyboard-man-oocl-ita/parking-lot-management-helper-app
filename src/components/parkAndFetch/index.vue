@@ -4,12 +4,13 @@
         <el-table :data="orders" stripe style="width: 100%" size="small">
             <el-table-column prop="orderId" label="订单号" width="80"></el-table-column>
             <el-table-column prop="carLicense" label="车牌号" width="80"></el-table-column>
+            <el-table-column prop="userPhoneNumber" label="手机号码" width="80"></el-table-column>
             <el-table-column prop="parkingLotName" label="停车场"></el-table-column>
             <el-table-column prop="status" label="状态"></el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button type="primary" @click="parkCar(scope.row)" v-if="scope.row.status === '已接单'">停车</el-button>
-                    <el-button type="primary" @click="fetchCar(scope.row)" v-if="scope.row.status === '请求取车'">取车</el-button>
+                    <el-button type="primary" size="mini" @click="parkCar(scope.row)" v-if="scope.row.status === '已接单'">停车</el-button>
+                    <el-button type="primary" size="mini" @click="fetchCar(scope.row)" v-if="scope.row.status === '请求取车'">取车</el-button>
                 </template>
             </el-table-column>
         </el-table>

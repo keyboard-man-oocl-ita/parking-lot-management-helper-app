@@ -33,9 +33,7 @@ export default {
   created() {
     this.fetchData();
   },
-  computed: {
-
-  },
+  computed: {},
   mounted() {
     this.idOfSetInterval = setInterval(() => {
       this.fetchData();
