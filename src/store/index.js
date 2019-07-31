@@ -15,7 +15,8 @@ const store = new Vuex.Store({
     orderHistory: [],
     operatedOrder: {},
     parkCar: true,
-    userOrder: []
+    userOrder: [],
+    curOrder: ''
   },
   mutations: {
     setOrderList(state, list) {
@@ -29,6 +30,9 @@ const store = new Vuex.Store({
     },
     setUserOrder( state, list){
       state.userOrder = list
+    },
+    setCurOrder( state, data ){
+      state.curOrder = data
     }
   },
   actions: {
@@ -46,6 +50,9 @@ const store = new Vuex.Store({
     },
     setParkCar({ commit }){
       commit('setParkCar')
+    },
+    setCurOrder({ commit }, data){
+      commit('setCurOrder', data)
     }
   }
 })
