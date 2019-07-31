@@ -2,7 +2,7 @@
   <div>
     <MyHeader :title="'用户信息'"></MyHeader>
     <div class="userProfile_logo">
-      <el-image style="width: 100px; height: 100px" :src="url"></el-image>
+      <el-image style="width: 100px; height: 100px;border-radius: 50px;" :src="url"></el-image>
     </div>
     <mt-field label="名称" readonly :value="`${userProfile.name}`" disableClear></mt-field>
     <mt-field label="车牌号" readonly :value="`${userProfile.carLicense}`" disableClear></mt-field>
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      url: require("@/assets/profile.svg"),
+      url: require("@/assets/nezha.png"),
       userProfile: ""
     };
   },
