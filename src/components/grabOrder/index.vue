@@ -80,10 +80,11 @@ export default {
                   iconClass: "el-icon-circle-check",
                   duration: 1000
                 });
+                this.$router.push("/parkAndFetch")
               })
               .catch(error =>
                 Toast({
-                  message: `${error.message}`,
+                  message: `抢单失败`,
                   position: "bottom",
                   duration: 1000
                 })
