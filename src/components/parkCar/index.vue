@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <MyHeader :title="'车辆停取'"></MyHeader>
+    <div>
+        <MyHeader :title="'车辆停取'"></MyHeader>
 
     <div class="park_logo">
       <el-button
@@ -22,7 +22,6 @@
       >{{pickText}}
       </el-button>
     </div>
-  </div>
 </template>
 
 <script>
@@ -245,4 +244,5 @@
     align-items: center;
     margin-top: 200px;
   }
+
 </style>
