@@ -84,7 +84,7 @@ export default {
               })
               .catch(error =>
                 Toast({
-                  message: `${error.message}`,
+                  message: `抢单失败`,
                   position: "bottom",
                   duration: 1000
                 })
