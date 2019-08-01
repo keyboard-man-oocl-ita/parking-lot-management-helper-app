@@ -74,7 +74,7 @@ export default {
       }
     };
     return {
-      url: require("@/assets/logo.png"),
+      url: require("@/assets/parkCar.svg"),
       loginForm: {
         phoneNumber: "",
         password: "",
